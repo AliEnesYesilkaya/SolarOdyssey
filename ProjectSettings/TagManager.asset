@@ -2,22 +2,30 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!78 &1
 TagManager:
-  serializedVersion: 2
-  tags: []
+  serializedVersion: 3
+  tags:
+  - Enemy
+  - Boss
+  - Ground
+  - Platform
+  - Collectible
+  - Checkpoint
+  - SpawnPoint
+  - Projectile
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Ground
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Player
+  - Enemy
+  - Projectile
+  - Collectible
+  - Interactable
+  - Trigger
+  - Wall
   - 
   - 
   - 
@@ -41,3 +49,29 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Background
+    uniqueID: 4165557275
+    locked: 0
+  - name: BackgroundObjects
+    uniqueID: 1708012903
+    locked: 0
+  - name: Ground
+    uniqueID: 4043054271
+    locked: 0
+  - name: Player
+    uniqueID: 581716561
+    locked: 0
+  - name: Enemy
+    uniqueID: 2597278431
+    locked: 0
+  - name: Projectile
+    uniqueID: 3332851103
+    locked: 0
+  - name: Effects
+    uniqueID: 2718104167
+    locked: 0
+  - name: UI
+    uniqueID: 2143859479
+    locked: 0
+  m_RenderingLayers:
+  - Default
