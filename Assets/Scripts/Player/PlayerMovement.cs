@@ -13,6 +13,7 @@ namespace SolarOdyssey.Player
         [SerializeField] private float jumpForce = 7f;
 
         private bool isGrounded = true;
+        public bool IsGrounded => isGrounded;
         private void Awake()
         {
             rb = GetComponent<Rigidbody2D>();
@@ -55,6 +56,7 @@ namespace SolarOdyssey.Player
             if (collision.gameObject.CompareTag("Ground"))
             {
                 isGrounded = true;
+
             }
         }
 
