@@ -32,37 +32,37 @@ namespace SolarOdyssey.Player
 
         public void Jump()
         {
-            if (!isGrounded)
+            if (!isGrounded) //havadaysa zıplama
                 return;
-
+            // yatay hızı koru ve zıpla
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
-            isGrounded = false;
+            isGrounded = false;//zıpladığı için havada 
         }
 
         private void Flip(float horizontalInput)
         {// sağa sola bakma basılma durumuna göre karakteri baktır.
             if (horizontalInput > 0)
             {
-                transform.localScale = new Vector3(0.8f,1.6f, 1f);
+                transform.localScale = new Vector3(2f,2f, 2f);
             }
             else if (horizontalInput < 0)
             {
-                transform.localScale = new Vector3(-0.8f,1.6f, 1f);
+                transform.localScale = new Vector3(-2f,2f, 2f);
             }
         }
 
         private void OnCollisionEnter2D(Collision2D collision)
         {
-            if (collision.gameObject.CompareTag("Ground"))
+            if (collision.gameObject.CompareTag("Ground"))//karakter yerde ground la teması varsa
             {
                 isGrounded = true;
 
             }
         }
 
-        private void OnCollisionExit2D(Collision2D collision)
+        private void OnCollisionExit2D(Collision2D collision) 
         {
-            if (collision.gameObject.CompareTag("Ground"))
+            if (collision.gameObject.CompareTag("Ground")) //zeminle teması kesildi ise havadadır
             {
                 isGrounded = false;
             }

@@ -1,3 +1,4 @@
+using System.Collections;
 using SolarOdyssey.Combat;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -12,6 +13,9 @@ namespace SolarOdyssey.Player
         private InputAction jumpAction;
 
         private Animator animator;
+        private AttackHitbox attackHitbox;
+
+        private bool isAttacking;
 
         private void Awake()
         {
@@ -25,6 +29,9 @@ namespace SolarOdyssey.Player
             // Animator Visual objesinin içinde olduğu için
             // Player'ın altındaki Animator'ı buluyoruz.
             animator = GetComponentInChildren<Animator>();
+
+            // Player'ın altındaki AttackHitbox'ı bul
+            attackHitbox = GetComponentInChildren<AttackHitbox>();
         }
 
         private void Update()
@@ -45,13 +52,36 @@ namespace SolarOdyssey.Player
             if (jumpAction.triggered)
             {
                 PlayerMovement.Jump();
-                Health health = GetComponent<Health>();
-                health.TakeDamage(10);
+
             }
-            if (Keyboard.current.fKey.wasPressedThisFrame)
+
+            // F tuşuna basınca saldır
+            if (Keyboard.current.fKey.wasPressedThisFrame && !isAttacking)
             {
-                animator.SetTrigger("Attack");
+                StartCoroutine(Attack());
             }
+        }
+
+        private IEnumerator Attack()
+        {
+            isAttacking = true;
+
+            // Attack animasyonunu başlat
+            animator.SetTrigger("Attack");
+
+            // Saldırının vuruş anına kadar bekle
+            yield return new WaitForSeconds(0.2f);
+
+            // Hasar alanını aç
+            attackHitbox.EnableHitbox();
+
+            // Hitbox'ın aktif kalacağı süre
+            yield return new WaitForSeconds(0.2f);
+
+            // Hasar alanını kapat
+            attackHitbox.DisableHitbox();
+
+            isAttacking = false;
         }
     }
 }
