@@ -9,8 +9,8 @@ namespace SolarOdyssey.Combat
         private void Awake()
         {
             hitbox = GetComponent<Collider2D>();
-            hitbox.enabled = false;
-        }
+            hitbox.enabled = false;// saldırı yapılmadığı sürece hitbox kapalı 
+        } 
 
         public void EnableHitbox()
         {
@@ -22,7 +22,7 @@ namespace SolarOdyssey.Combat
             hitbox.enabled = false;
         }
 
-        private void OnTriggerEnter2D(Collider2D other)
+        private void OnTriggerEnter2D(Collider2D other) // temas edilen nesnenin sağlık sistemi varsa hasar ver.
         {
             Health health = other.GetComponent<Health>();
 

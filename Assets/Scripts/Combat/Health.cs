@@ -1,7 +1,6 @@
 using SolarOdyssey.Core;
 using SolarOdyssey.Player;
 using UnityEngine;
-using SolarOdyssey.Player;
 
 namespace SolarOdyssey.Combat
 {
@@ -9,6 +8,7 @@ namespace SolarOdyssey.Combat
     {
         [SerializeField] private int maxHealth = 100;
 
+        
         private int currentHealth;
         private Animator animator;
         private PlayerController playerController;
@@ -18,21 +18,21 @@ namespace SolarOdyssey.Combat
         private void Awake()
         {
             currentHealth = maxHealth;
-            animator = GetComponentInChildren<Animator>();
+            animator = GetComponentInChildren<Animator>(); //player childýnýn animatörünü bul.
             playerController = GetComponent<PlayerController>();
             playerMovement = GetComponent<PlayerMovement>();
         }
 
         public void TakeDamage(int damage)
         {
-            if (isDead)
+            if (isDead) //öldüyse hasar almasýn 
                 return;
 
             currentHealth -= damage;
 
-            Debug.Log(gameObject.name + " Health: " + currentHealth);
+            Debug.Log(gameObject.name + " Can: " + currentHealth);// güncel caný yaz 
 
-            if (currentHealth <= 0)
+            if (currentHealth <= 0) //ölmeyi baþlat 
             {
                 Die();
             }
@@ -44,12 +44,12 @@ namespace SolarOdyssey.Combat
 
             Debug.Log(gameObject.name + " Dead!");
 
-            if (animator != null)
+            if (animator != null) // ölme animasyonunu baþlat 
             {
                 animator.SetTrigger("Dead");
             }
 
-            if (playerController != null)
+            if (playerController != null) //öldüðü süre hareket ve kontroller durdur 
             {
                 playerController.enabled = false;
             }
@@ -59,26 +59,26 @@ namespace SolarOdyssey.Combat
                 playerMovement.enabled = false;
             }
 
-            Invoke(nameof(Respawn), 0.7f);
+            Invoke(nameof(Respawn), 0.7f);// 0.7 saniye sonra tekrar doð
         }
 
         private void Respawn()
         {
             if (Checkpoint.HasCheckpoint)
             {
-                transform.position = Checkpoint.RespawnPosition;
+                transform.position = Checkpoint.RespawnPosition; //oyuncuyu checkpoint noktasýna spawnla 
             }
 
-            currentHealth = maxHealth;
+            currentHealth = maxHealth; //caný maxla,ölü isaretini kaldýr 
             isDead = false;
 
-            if (animator != null)
+            if (animator != null) // animasyonu varsayýlana sýfýrla 
             {
                 animator.Rebind();
                 animator.Update(0f);
             }
 
-            if (playerMovement != null)
+            if (playerMovement != null) // kontroller ve hareket tekrardan aktif 
             {
                 playerMovement.enabled = true;
             }
