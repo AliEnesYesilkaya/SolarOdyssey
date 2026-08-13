@@ -9,8 +9,8 @@ namespace SolarOdyssey.Combat
         private void Awake()
         {
             hitbox = GetComponent<Collider2D>();
-            hitbox.enabled = false;// saldırı yapılmadığı sürece hitbox kapalı 
-        } 
+            hitbox.enabled = false;
+        }
 
         public void EnableHitbox()
         {
@@ -22,12 +22,13 @@ namespace SolarOdyssey.Combat
             hitbox.enabled = false;
         }
 
-        private void OnTriggerEnter2D(Collider2D other) // temas edilen nesnenin sağlık sistemi varsa hasar ver.
+        private void OnTriggerEnter2D(Collider2D other)
         {
-            Health health = other.GetComponent<Health>();
+            Health health = other.GetComponentInParent<Health>();
 
             if (health != null)
             {
+                Debug.Log("ATTACK HITBOX ÇARPTI: " + other.name);
                 health.TakeDamage(10);
             }
         }

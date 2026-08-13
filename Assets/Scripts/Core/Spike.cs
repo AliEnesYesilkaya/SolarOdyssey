@@ -10,7 +10,7 @@ namespace SolarOdyssey.Core
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            Debug.Log("SPIKE TRIGGER ÇALIÞTI");
+            Debug.Log("SPIKE TRIGGER ÇALIÞTI"); 
 
             if (other.CompareTag("Player"))
             {
