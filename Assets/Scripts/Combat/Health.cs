@@ -1,5 +1,6 @@
 using SolarOdyssey.Core;
 using SolarOdyssey.Player;
+using SolarOdyssey.Enemy;
 using UnityEngine;
 
 namespace SolarOdyssey.Combat
@@ -8,19 +9,28 @@ namespace SolarOdyssey.Combat
     {
         [SerializeField] private int maxHealth = 100;
 
-        
         private int currentHealth;
         private Animator animator;
+
         private PlayerController playerController;
         private PlayerMovement playerMovement;
+        private EnemyBase enemyBase;
+
         private bool isDead;
 
         private void Awake()
         {
             currentHealth = maxHealth;
-            animator = GetComponentInChildren<Animator>(); //player childýnýn animatörünü bul.
+
+            // Child içerisindeki Animator'u bul
+            animator = GetComponentInChildren<Animator>();
+
+            // Eðer bu obje Player ise bunlar bulunacak
             playerController = GetComponent<PlayerController>();
             playerMovement = GetComponent<PlayerMovement>();
+
+            // Eðer bu obje Enemy ise EnemyBase bulunacak
+            enemyBase = GetComponent<EnemyBase>();
         }
 
         public void TakeDamage(int damage)
@@ -30,7 +40,11 @@ namespace SolarOdyssey.Combat
 
             currentHealth -= damage;
 
-            Debug.Log(gameObject.name + " Can: " + currentHealth);
+            Debug.Log(
+                gameObject.name +
+                " Can: " +
+                currentHealth
+            );
 
             if (currentHealth <= 0)
             {
@@ -43,19 +57,24 @@ namespace SolarOdyssey.Combat
             if (isDead)
                 return;
 
-            currentHealth += amount;//iyileþme miktarý ekle
+            currentHealth += amount;
 
-            if (currentHealth > maxHealth)//maxý geçerse maxa eþitles
+            if (currentHealth > maxHealth)
             {
                 currentHealth = maxHealth;
             }
 
-            Debug.Log(gameObject.name + " Can: " + currentHealth);
+            Debug.Log(
+                gameObject.name +
+                " Can: " +
+                currentHealth
+            );
         }
+
         public bool IsFullHealth()
-{
-    return currentHealth >= maxHealth;
-}
+        {
+            return currentHealth >= maxHealth;
+        }
 
         private void Die()
         {
@@ -63,12 +82,17 @@ namespace SolarOdyssey.Combat
 
             Debug.Log(gameObject.name + " Dead!");
 
-            if (animator != null) // ölme animasyonunu baþlat 
+            // Ölme animasyonunu baþlat
+            if (animator != null)
             {
                 animator.SetTrigger("Dead");
             }
 
-            if (playerController != null) //öldüðü süre hareket ve kontroller durdur 
+            // -------------------------
+            // PLAYER ÖLÜMÜ
+            // -------------------------
+
+            if (playerController != null)
             {
                 playerController.enabled = false;
             }
@@ -78,26 +102,51 @@ namespace SolarOdyssey.Combat
                 playerMovement.enabled = false;
             }
 
-            Invoke(nameof(Respawn), 0.7f);// 0.7 saniye sonra tekrar doð
+            // -------------------------
+            // ENEMY ÖLÜMÜ
+            // -------------------------
+
+            if (enemyBase != null)
+            {
+                // Enemy artýk AI çalýþtýrmasýn
+                enemyBase.enabled = false;
+
+                // Ölüm animasyonu oynadýktan sonra yok et
+                Invoke(nameof(DestroyEnemy), 0.7f);
+
+                return;
+            }
+
+            // -------------------------
+            // PLAYER RESPAWN
+            // -------------------------
+
+            Invoke(nameof(Respawn), 0.7f);
+        }
+
+        private void DestroyEnemy()
+        {
+            Destroy(gameObject);
         }
 
         private void Respawn()
         {
             if (Checkpoint.HasCheckpoint)
             {
-                transform.position = Checkpoint.RespawnPosition; //oyuncuyu checkpoint noktasýna spawnla 
+                transform.position =
+                    Checkpoint.RespawnPosition;
             }
 
-            currentHealth = maxHealth; //caný maxla,ölü isaretini kaldýr 
+            currentHealth = maxHealth;
             isDead = false;
 
-            if (animator != null) // animasyonu varsayýlana sýfýrla 
+            if (animator != null)
             {
                 animator.Rebind();
                 animator.Update(0f);
             }
 
-            if (playerMovement != null) // kontroller ve hareket tekrardan aktif 
+            if (playerMovement != null)
             {
                 playerMovement.enabled = true;
             }
@@ -107,7 +156,11 @@ namespace SolarOdyssey.Combat
                 playerController.enabled = true;
             }
 
-            Debug.Log(gameObject.name + " Respawned! Health: " + currentHealth);
+            Debug.Log(
+                gameObject.name +
+                " Respawned! Health: " +
+                currentHealth
+            );
         }
     }
 }

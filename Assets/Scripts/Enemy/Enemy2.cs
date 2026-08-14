@@ -23,19 +23,42 @@ namespace SolarOdyssey.Enemy
 
             if (player == null)
                 return;
-            //mesafe hesabı 
-            float distance = Vector2.Distance(transform.position, player.position);
-               
-            // Oyuncu algılama alanına girdiyse takibe'e geç
-            if (distance <= detectionRange)
+
+            float distance = Vector2.Distance(
+                transform.position,
+                player.position
+            );
+
+            // Saldırı menzilindeyse Attack
+            if (distance <= attackRange)
+            {
+                if (stateMachine.CurrentState is not AttackState)
+                {
+                    stateMachine.ChangeState(
+                        new AttackState(
+                            transform,
+                            player,
+                            attackRange,
+                            attackDamage
+                        )
+                    );
+                }
+            }
+            // Algılama menzilindeyse Chase
+            else if (distance <= detectionRange)
             {
                 if (stateMachine.CurrentState is not ChaseState)
                 {
                     stateMachine.ChangeState(
-                        new ChaseState(rb, player, moveSpeed));  
+                        new ChaseState(
+                            rb,
+                            player,
+                            moveSpeed
+                        )
+                    );
                 }
             }
-            // Oyuncu algılama alanından çıktıysa devriyeye dön
+            // Algılama alanından çıktıysa Patrol
             else
             {
                 if (stateMachine.CurrentState is not Enemy2PatrolState)

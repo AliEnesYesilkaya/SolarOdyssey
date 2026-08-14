@@ -4,7 +4,7 @@ namespace SolarOdyssey.Enemy
 {
     public class Enemy1 : EnemyBase
     {
-        protected override void Awake()//enemybase ı çalıştır ve ilk durum olarak devriye at 
+        protected override void Awake() // EnemyBase'i çalıştır ve ilk durum olarak devriye at
         {
             base.Awake();
 
@@ -17,16 +17,54 @@ namespace SolarOdyssey.Enemy
 
             if (player == null)
                 return;
-            //mesafeyi hesapla oyuncu menzil içindeyse ve takip edilmiyorsa chase durumunu başlat 
-            float distance = Vector2.Distance(transform.position, player.position);
 
-            if (distance <= detectionRange)
+            float distance = Vector2.Distance(
+                transform.position,
+                player.position
+            );
+
+            // Saldırı menzilindeyse Attack
+            if (distance <= attackRange)
+            {
+                if (stateMachine.CurrentState is not AttackState)
+                {
+                    stateMachine.ChangeState(
+                        new AttackState(
+                            transform,
+                            player,
+                            attackRange,
+                            attackDamage
+                        )
+                    );
+                }
+
+                // Saldırırken koşma animasyonu oynatma
+                animator.SetFloat("Speed", 0f);
+            }
+
+            // Algılama menzilindeyse Chase
+            else if (distance <= detectionRange)
             {
                 if (stateMachine.CurrentState is not ChaseState)
                 {
                     stateMachine.ChangeState(
-                       new ChaseState( rb,  player, moveSpeed)   );
+                        new ChaseState(
+                            rb,
+                            player,
+                            moveSpeed
+                        )
+                    );
                 }
+
+                // Oyuncuyu görünce koş
+                animator.SetFloat("Speed", 1f);
+            }
+
+            // Oyuncu algılama menzilinin dışındaysa
+            else
+            {
+                // Şimdilik Idle
+                animator.SetFloat("Speed", 0f);
             }
         }
     }
