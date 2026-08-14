@@ -4,12 +4,17 @@ namespace SolarOdyssey.Enemy
 {
     public class Enemy2 : EnemyBase
     {
+        [Header("Patrol Points")]
+        [SerializeField] private Transform patrolPointA;
+        [SerializeField] private Transform patrolPointB;
+
         protected override void Awake()
         {
             base.Awake();
 
-            // İlk durum: devriye
-            stateMachine.Initialize(new PatrolState());
+            stateMachine.Initialize( //state machine başlangıcı a b noktaları arası devriye 
+                new Enemy2PatrolState(rb, patrolPointA, patrolPointB, moveSpeed)
+                   );
         }
 
         protected override void Update()
@@ -18,34 +23,30 @@ namespace SolarOdyssey.Enemy
 
             if (player == null)
                 return;
-
-            // Oyuncu ile düşman arasındaki mesafe
-            float distance = Vector2.Distance(
-                transform.position,
-                player.position
-            );
-
-            // Oyuncu algılama alanına girdiyse Chase'e geç
+            //mesafe hesabı 
+            float distance = Vector2.Distance(transform.position, player.position);
+               
+            // Oyuncu algılama alanına girdiyse takibe'e geç
             if (distance <= detectionRange)
             {
                 if (stateMachine.CurrentState is not ChaseState)
                 {
                     stateMachine.ChangeState(
-                        new ChaseState(
-                            transform,
-                            player,
-                            moveSpeed
-                        )
-                    );
+                        new ChaseState(rb, player, moveSpeed));  
                 }
             }
-            // Oyuncu algılama alanından çıktıysa Patrol'a dön
+            // Oyuncu algılama alanından çıktıysa devriyeye dön
             else
             {
-                if (stateMachine.CurrentState is not PatrolState)
+                if (stateMachine.CurrentState is not Enemy2PatrolState)
                 {
                     stateMachine.ChangeState(
-                        new PatrolState()
+                        new Enemy2PatrolState(
+                            rb,
+                            patrolPointA,
+                            patrolPointB,
+                            moveSpeed
+                        )
                     );
                 }
             }

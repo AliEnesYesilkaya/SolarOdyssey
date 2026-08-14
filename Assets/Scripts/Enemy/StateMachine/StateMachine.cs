@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace SolarOdyssey.Enemy
@@ -6,14 +5,16 @@ namespace SolarOdyssey.Enemy
     public class StateMachine
     {
         private IState currentState;
+
         public IState CurrentState => currentState;
-        public void Initialize(IState startingState)//başlangıç durumu ayarlayan metod 
+
+        public void Initialize(IState startingState)
         {
             currentState = startingState;
             currentState.Enter();
         }
 
-        public void ChangeState(IState newState)// durum değişme metodu 
+        public void ChangeState(IState newState)
         {
             currentState?.Exit();
 
@@ -22,7 +23,7 @@ namespace SolarOdyssey.Enemy
             currentState.Enter();
         }
 
-        public void Update() //aktif durumun sürekli çalışması için tick uygula 
+        public void FixedUpdate()
         {
             currentState?.Tick();
         }

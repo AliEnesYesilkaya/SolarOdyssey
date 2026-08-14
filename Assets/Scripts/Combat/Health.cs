@@ -25,18 +25,37 @@ namespace SolarOdyssey.Combat
 
         public void TakeDamage(int damage)
         {
-            if (isDead) //öldüyse hasar almasýn 
+            if (isDead)
                 return;
 
             currentHealth -= damage;
 
-            Debug.Log(gameObject.name + " Can: " + currentHealth);// güncel caný yaz 
+            Debug.Log(gameObject.name + " Can: " + currentHealth);
 
-            if (currentHealth <= 0) //ölmeyi baþlat 
+            if (currentHealth <= 0)
             {
                 Die();
             }
         }
+
+        public void Heal(int amount)
+        {
+            if (isDead)
+                return;
+
+            currentHealth += amount;//iyileþme miktarý ekle
+
+            if (currentHealth > maxHealth)//maxý geçerse maxa eþitles
+            {
+                currentHealth = maxHealth;
+            }
+
+            Debug.Log(gameObject.name + " Can: " + currentHealth);
+        }
+        public bool IsFullHealth()
+{
+    return currentHealth >= maxHealth;
+}
 
         private void Die()
         {

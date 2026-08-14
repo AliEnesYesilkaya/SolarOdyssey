@@ -25,8 +25,7 @@ namespace SolarOdyssey.Enemy
                 if (stateMachine.CurrentState is not ChaseState)
                 {
                     stateMachine.ChangeState(
-                        new ChaseState(transform, player, moveSpeed)
-                    );
+                       new ChaseState( rb,  player, moveSpeed)   );
                 }
             }
         }
