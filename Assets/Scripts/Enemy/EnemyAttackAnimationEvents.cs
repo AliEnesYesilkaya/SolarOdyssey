@@ -5,7 +5,7 @@ namespace SolarOdyssey.Enemy
     public class EnemyAttackAnimationEvents : MonoBehaviour
     {
         private EnemyBase enemy;
-
+        //bir üst obje ile iletişim
         private void Awake()
         {
             enemy = GetComponentInParent<EnemyBase>();

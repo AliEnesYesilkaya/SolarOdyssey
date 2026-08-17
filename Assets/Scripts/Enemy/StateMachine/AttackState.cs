@@ -13,7 +13,7 @@ namespace SolarOdyssey.Enemy
         private float attackTimer;
 
         private Animator animator;
-
+        //değerleri al
         public AttackState(Transform enemy, Transform player, float attackRange, int attackDamage)
         {
             this.enemy = enemy;
