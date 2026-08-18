@@ -151,4 +151,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7396db4ee2f48704ea5ad58090399a53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SolarOdyssey.Core.Spike
-  damage: 20
+  damage: 5
