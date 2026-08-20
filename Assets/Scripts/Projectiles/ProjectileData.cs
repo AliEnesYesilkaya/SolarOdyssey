@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace SolarOdyssey.Projectiles
+namespace SolarOdyssey.Projectiles 
 {
     [CreateAssetMenu(
         fileName = "ProjectileData",

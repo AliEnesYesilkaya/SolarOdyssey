@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 5ea48f373bb786c4a85dc5a99ae66960
+guid: 453b812adff29544581607aa6b816fb1
 TextureImporter:
   internalIDToNameTable:
   - first:
@@ -112,12 +112,12 @@ TextureImporter:
       name: Idle-Sheet_0
       rect:
         serializedVersion: 2
-        x: 219
-        y: 30
-        width: 37
-        height: 50
-      alignment: 9
-      pivot: {x: 17.01063, y: 4.3779964}
+        x: 24
+        y: 48
+        width: 19
+        height: 17
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -200,7 +200,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 0fd1159135ef6b54187a3632ea92687e
+    spriteID: ebd444f7b8adc8941a8ef890aa484d79
     internalID: 0
     vertices: []
     indices: 

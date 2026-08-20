@@ -18,6 +18,9 @@ namespace SolarOdyssey.Combat
 
         private bool isDead;
 
+
+        public int CurrentHealth => currentHealth;
+        public int MaxHealth => maxHealth;
         private void Awake()
         {
             currentHealth = maxHealth;

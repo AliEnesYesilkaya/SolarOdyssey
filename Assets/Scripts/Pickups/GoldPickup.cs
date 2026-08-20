@@ -1,4 +1,6 @@
+using SolarOdyssey.UI;
 using UnityEngine;
+
 
 namespace SolarOdyssey
 {
@@ -10,6 +12,13 @@ namespace SolarOdyssey
         {
             if (!other.CompareTag("Player"))
                 return;
+
+            CoinUI coinUI = FindFirstObjectByType<CoinUI>();
+
+            if (coinUI != null)
+            {
+                coinUI.AddGold(goldAmount);
+            }
 
             Debug.Log("Altın alındı: +" + goldAmount);
 
