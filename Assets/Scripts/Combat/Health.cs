@@ -15,25 +15,29 @@ namespace SolarOdyssey.Combat
         private PlayerController playerController;
         private PlayerMovement playerMovement;
         private EnemyBase enemyBase;
+        private EarthBoss earthBoss;
 
         private bool isDead;
 
-
         public int CurrentHealth => currentHealth;
         public int MaxHealth => maxHealth;
+
         private void Awake()
         {
-            currentHealth = maxHealth;
-
-            // Child içerisindeki Animator'u bul
             animator = GetComponentInChildren<Animator>();
 
-            // Eðer bu obje Player ise bunlar bulunacak
             playerController = GetComponent<PlayerController>();
             playerMovement = GetComponent<PlayerMovement>();
-
-            // Eðer bu obje Enemy ise EnemyBase bulunacak
             enemyBase = GetComponent<EnemyBase>();
+            earthBoss = GetComponent<EarthBoss>();
+
+            // BOSS
+            if (earthBoss != null)
+            {
+                maxHealth = 200;
+            }
+
+            currentHealth = maxHealth;
         }
 
         public void TakeDamage(int damage)
@@ -41,14 +45,37 @@ namespace SolarOdyssey.Combat
             if (isDead)
                 return;
 
+            // BOSS HER ZAMAN 5 HASAR ALIR
+            if (earthBoss != null)
+            {
+                damage = 5;
+            }
+
             currentHealth -= damage;
+
+            if (currentHealth < 0)
+            {
+                currentHealth = 0;
+            }
 
             Debug.Log(
                 gameObject.name +
                 " Can: " +
-                currentHealth
+                currentHealth +
+                "/" +
+                maxHealth
             );
 
+            // Hurt
+            if (currentHealth > 0)
+            {
+                if (animator != null)
+                {
+                    animator.SetTrigger("Hurt");
+                }
+            }
+
+            // Ölüm
             if (currentHealth <= 0)
             {
                 Die();
@@ -66,12 +93,6 @@ namespace SolarOdyssey.Combat
             {
                 currentHealth = maxHealth;
             }
-
-            Debug.Log(
-                gameObject.name +
-                " Can: " +
-                currentHealth
-            );
         }
 
         public bool IsFullHealth()
@@ -85,16 +106,12 @@ namespace SolarOdyssey.Combat
 
             Debug.Log(gameObject.name + " Dead!");
 
-            // Ölme animasyonunu baþlat
             if (animator != null)
             {
-                animator.SetTrigger("Dead");
+                animator.SetTrigger("Die");
             }
 
-            // -------------------------
-            // PLAYER ÖLÜMÜ
-            // -------------------------
-
+            // PLAYER
             if (playerController != null)
             {
                 playerController.enabled = false;
@@ -105,29 +122,40 @@ namespace SolarOdyssey.Combat
                 playerMovement.enabled = false;
             }
 
-            // -------------------------
-            // ENEMY ÖLÜMÜ
-            // -------------------------
-
-            if (enemyBase != null)
+            // BOSS
+            if (earthBoss != null)
             {
-                // Enemy artýk AI çalýþtýrmasýn
-                enemyBase.enabled = false;
+                earthBoss.SetDead();
 
-                // Ölüm animasyonu oynadýktan sonra yok et
-                Invoke(nameof(DestroyEnemy), 0.7f);
+                Invoke(
+                    nameof(DestroyCharacter),
+                    1.2f
+                );
 
                 return;
             }
 
-            // -------------------------
-            // PLAYER RESPAWN
-            // -------------------------
+            // NORMAL ENEMY
+            if (enemyBase != null)
+            {
+                enemyBase.enabled = false;
 
-            Invoke(nameof(Respawn), 0.7f);
+                Invoke(
+                    nameof(DestroyCharacter),
+                    0.7f
+                );
+
+                return;
+            }
+
+            // PLAYER RESPAWN
+            Invoke(
+                nameof(Respawn),
+                0.7f
+            );
         }
 
-        private void DestroyEnemy()
+        private void DestroyCharacter()
         {
             Destroy(gameObject);
         }
@@ -158,12 +186,6 @@ namespace SolarOdyssey.Combat
             {
                 playerController.enabled = true;
             }
-
-            Debug.Log(
-                gameObject.name +
-                " Respawned! Health: " +
-                currentHealth
-            );
         }
     }
 }
