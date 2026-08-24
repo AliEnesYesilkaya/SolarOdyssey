@@ -15,6 +15,9 @@ namespace SolarOdyssey.Player
         private Animator animator;
         private AttackHitbox attackHitbox;
 
+        private PlayerAudio playerAudio;
+
+
         private bool isAttacking;
 
         private void Awake()
@@ -32,6 +35,7 @@ namespace SolarOdyssey.Player
 
             // Player'ın altındaki AttackHitbox'ı bul
             attackHitbox = GetComponentInChildren<AttackHitbox>();
+            playerAudio = GetComponent<PlayerAudio>();
         }
 
         private void Update()
@@ -53,8 +57,11 @@ namespace SolarOdyssey.Player
             {
                 PlayerMovement.Jump();
 
+                if (PlayerMovement.IsGrounded == false)
+                {
+                    playerAudio.PlayJump();
+                }
             }
-
             // F tuşuna basınca saldır
             if (Keyboard.current.fKey.wasPressedThisFrame && !isAttacking)
             {
@@ -68,6 +75,7 @@ namespace SolarOdyssey.Player
 
             // Attack animasyonunu başlat
             animator.SetTrigger("Attack");
+            playerAudio.PlayAttack();
 
             // Saldırının vuruş anına kadar bekle
             yield return new WaitForSeconds(0.2f);

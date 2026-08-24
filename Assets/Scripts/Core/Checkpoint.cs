@@ -4,15 +4,21 @@ namespace SolarOdyssey.Core
 {
     public class Checkpoint : MonoBehaviour
     {
-        public static Vector3 RespawnPosition;//oyuncunun yeniden doðacaðý son koordinat
-        public static bool HasCheckpoint; //checkpointe ulaþtý mý 
+        public static Vector3 RespawnPosition;
+        public static bool HasCheckpoint;
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if (other.CompareTag("Player"))//tag kontrolu 
+            if (other.CompareTag("Player"))
             {
                 RespawnPosition = transform.position;
-                HasCheckpoint = true; //chechkpoint konumuna ulaþma
+                HasCheckpoint = true;
+
+                // Checkpoint sesi
+                if (Audio.EnvironmentAudio.Instance != null)
+                {
+                    Audio.EnvironmentAudio.Instance.PlayCheckpoint();
+                }
 
                 Debug.Log("Checkpoint reached!");
             }

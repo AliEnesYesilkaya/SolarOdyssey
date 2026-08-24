@@ -1,7 +1,6 @@
 using SolarOdyssey.UI;
 using UnityEngine;
 
-
 namespace SolarOdyssey
 {
     public class GoldPickup : MonoBehaviour
@@ -18,6 +17,12 @@ namespace SolarOdyssey
             if (coinUI != null)
             {
                 coinUI.AddGold(goldAmount);
+            }
+
+            // Altın sesi
+            if (Audio.EnvironmentAudio.Instance != null)
+            {
+                Audio.EnvironmentAudio.Instance.PlayGold();
             }
 
             Debug.Log("Altın alındı: +" + goldAmount);

@@ -11,7 +11,7 @@ namespace SolarOdyssey.Combat
 
         private int currentHealth;
         private Animator animator;
-
+        private PlayerAudio playerAudio;
         private PlayerController playerController;
         private PlayerMovement playerMovement;
         private EnemyBase enemyBase;
@@ -25,7 +25,7 @@ namespace SolarOdyssey.Combat
         private void Awake()
         {
             animator = GetComponentInChildren<Animator>();
-
+            playerAudio = GetComponent<PlayerAudio>();
             playerController = GetComponent<PlayerController>();
             playerMovement = GetComponent<PlayerMovement>();
             enemyBase = GetComponent<EnemyBase>();
@@ -39,6 +39,7 @@ namespace SolarOdyssey.Combat
 
             currentHealth = maxHealth;
         }
+
 
         public void TakeDamage(int damage)
         {
@@ -73,6 +74,12 @@ namespace SolarOdyssey.Combat
                 {
                     animator.SetTrigger("Hurt");
                 }
+
+                // Hurt sesi
+                if (playerAudio != null)
+                {
+                    playerAudio.PlayHurt();
+                }
             }
 
             // Ölüm
@@ -81,7 +88,6 @@ namespace SolarOdyssey.Combat
                 Die();
             }
         }
-
         public void Heal(int amount)
         {
             if (isDead)
@@ -103,12 +109,16 @@ namespace SolarOdyssey.Combat
         private void Die()
         {
             isDead = true;
+            if (playerAudio != null)
+            {
+                playerAudio.PlayDeath();
+            }
 
             Debug.Log(gameObject.name + " Dead!");
 
             if (animator != null)
             {
-                animator.SetTrigger("Die");
+                animator.SetTrigger("Dead");
             }
 
             // PLAYER
@@ -137,7 +147,9 @@ namespace SolarOdyssey.Combat
 
             // NORMAL ENEMY
             if (enemyBase != null)
+
             {
+                enemyBase.PlayDeath();
                 enemyBase.enabled = false;
 
                 Invoke(

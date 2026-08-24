@@ -1,6 +1,6 @@
+using SolarOdyssey.Audio;
 using SolarOdyssey.Combat;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 namespace SolarOdyssey.Core
 {
@@ -10,11 +10,17 @@ namespace SolarOdyssey.Core
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            Debug.Log("SPIKE TRIGGER ÇALIÞTI"); 
+            Debug.Log("SPIKE TRIGGER ÇALIÞTI");
 
             if (other.CompareTag("Player"))
             {
                 Debug.Log("PLAYER TAG'Ý DOÐRU");
+
+                // Suya düþme sesi
+                if (EnvironmentAudio.Instance != null)
+                {
+                    EnvironmentAudio.Instance.PlayWaterSplash();
+                }
 
                 Health health = other.GetComponent<Health>();
 
@@ -30,10 +36,11 @@ namespace SolarOdyssey.Core
             }
             else
             {
-                Debug.Log("ÇARPAN OBJE PLAYER DEÐÝL: " + other.name);
+                Debug.Log(
+                    "ÇARPAN OBJE PLAYER DEÐÝL: " +
+                    other.name
+                );
             }
         }
-
-
     }
 }

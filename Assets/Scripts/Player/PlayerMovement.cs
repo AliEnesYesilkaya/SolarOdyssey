@@ -1,71 +1,108 @@
 using UnityEngine;
 
-// kodlarda çakışma olmaması için 
 namespace SolarOdyssey.Player
 {
     public class PlayerMovement : MonoBehaviour
     {
-
         private Rigidbody2D rb;
+        private PlayerAudio playerAudio;
+
+        [Header("Movement")]
         [SerializeField] private float moveSpeed = 5f;
 
         [Header("Jump Settings")]
         [SerializeField] private float jumpForce = 7f;
 
-        private bool isGrounded = true;
+        private bool isGrounded;
+        private bool isTouchingWall;
+
         public bool IsGrounded => isGrounded;
+        public bool IsTouchingWall => isTouchingWall;
+
         private void Awake()
         {
             rb = GetComponent<Rigidbody2D>();
+            playerAudio = GetComponent<PlayerAudio>();
         }
 
-        void Update()
-        {
-
-        }
-        //PlayerController sınıfından gelen yön verisine göre hareket
         public void Move(Vector2 moveInput)
-        { // transform fizik kurallarını yok sayıp ışınlama yaptığı için velocity kullanıyoruz yatay hızda 
-            rb.linearVelocity = new Vector2(moveInput.x * moveSpeed, rb.linearVelocity.y);
-            Flip (moveInput.x);
+        {
+            rb.linearVelocity = new Vector2(
+                moveInput.x * moveSpeed,
+                rb.linearVelocity.y
+            );
+
+            Flip(moveInput.x);
         }
 
         public void Jump()
         {
-            if (!isGrounded) //havadaysa zıplama
+            if (!isGrounded)
                 return;
-            // yatay hızı koru ve zıpla
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
-            isGrounded = false;//zıpladığı için havada 
+
+            rb.linearVelocity = new Vector2(
+                rb.linearVelocity.x,
+                jumpForce
+            );
+
+            isGrounded = false;
         }
 
         private void Flip(float horizontalInput)
-        {// sağa sola bakma basılma durumuna göre karakteri baktır.
+        {
             if (horizontalInput > 0)
             {
-                transform.localScale = new Vector3(2f,2f, 2f);
+                transform.localScale =
+                    new Vector3(2f, 2f, 2f);
             }
             else if (horizontalInput < 0)
             {
-                transform.localScale = new Vector3(-2f,2f, 2f);
+                transform.localScale =
+                    new Vector3(-2f, 2f, 2f);
             }
         }
 
-        private void OnCollisionEnter2D(Collision2D collision)
+        private void OnCollisionStay2D(Collision2D collision)
         {
-            if (collision.gameObject.CompareTag("Ground"))//karakter yerde ground la teması varsa
-            {
-                isGrounded = true;
+            if (!collision.gameObject.CompareTag("Ground"))
+                return;
 
+            bool wasGrounded = isGrounded;
+
+            isGrounded = false;
+            isTouchingWall = false;
+
+            foreach (ContactPoint2D contact in collision.contacts)
+            {
+                // Gerçek zemin teması
+                if (contact.normal.y > 0.5f)
+                {
+                    isGrounded = true;
+                }
+
+                // Duvar teması
+                if (Mathf.Abs(contact.normal.x) > 0.5f)
+                {
+                    isTouchingWall = true;
+                }
+            }
+
+            // Havadan yere yeni indiysek
+            if (!wasGrounded &&
+                isGrounded &&
+                playerAudio != null)
+            {
+                playerAudio.PlayLand();
             }
         }
 
-        private void OnCollisionExit2D(Collision2D collision) 
+        private void OnCollisionExit2D(Collision2D collision)
         {
-            if (collision.gameObject.CompareTag("Ground")) //zeminle teması kesildi ise havadadır
-            {
-                isGrounded = false;
-            }
+            if (!collision.gameObject.CompareTag("Ground"))
+                return;
+
+            isGrounded = false;
+            isTouchingWall = false;
         }
     }
 }

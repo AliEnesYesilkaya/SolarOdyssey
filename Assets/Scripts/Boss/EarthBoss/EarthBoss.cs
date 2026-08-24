@@ -30,6 +30,8 @@ namespace SolarOdyssey.Enemy
         private Transform player;
         private PlayerMovement playerMovement;
 
+        private EarthBossAudio bossAudio;
+
         private StateMachine stateMachine;
 
         private EarthBossPatrolState patrolState;
@@ -46,9 +48,11 @@ namespace SolarOdyssey.Enemy
 
             animator = GetComponentInChildren<Animator>();
 
-            // Boss'un Visual içerisindeki SpriteRenderer'ı bul.
             spriteRenderer =
                 GetComponentInChildren<SpriteRenderer>();
+
+            bossAudio =
+                GetComponent<EarthBossAudio>();
 
             GameObject playerObject =
                 GameObject.FindGameObjectWithTag("Player");
@@ -81,7 +85,8 @@ namespace SolarOdyssey.Enemy
                     playerMovement,
                     jumpForce,
                     attackRange,
-                    attackDamage
+                    attackDamage,
+                    bossAudio
                 );
 
             attackTimer = attackCooldown;
@@ -99,7 +104,6 @@ namespace SolarOdyssey.Enemy
 
             attackTimer -= Time.fixedDeltaTime;
 
-            // Oyuncu bossun algılama alanına girdiyse
             if (PlayerDetected())
             {
                 if (attackTimer <= 0f &&
@@ -113,7 +117,6 @@ namespace SolarOdyssey.Enemy
                 }
             }
 
-            // Saldırı bittiyse tekrar devriyeye dön.
             if (stateMachine.CurrentState == attackState &&
                 !attackState.IsAttacking())
             {
@@ -158,8 +161,6 @@ namespace SolarOdyssey.Enemy
             if (spriteRenderer == null)
                 return;
 
-            // Boss sağa gidiyorsa normal,
-            // sola gidiyorsa Sprite'ı ters çevir.
             if (rb.linearVelocity.x > 0.01f)
             {
                 spriteRenderer.flipX = false;
@@ -204,6 +205,12 @@ namespace SolarOdyssey.Enemy
                 return;
 
             isDead = true;
+
+            // Boss ölüm sesi
+            if (bossAudio != null)
+            {
+                bossAudio.PlayDeath();
+            }
 
             stateMachine.ChangeState(
                 patrolState

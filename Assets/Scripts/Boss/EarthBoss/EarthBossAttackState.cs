@@ -13,6 +13,7 @@ namespace SolarOdyssey.Enemy
 
         private Animator animator;
         private PlayerMovement playerMovement;
+        private EarthBossAudio bossAudio;
 
         private float jumpForce;
         private float attackRange;
@@ -29,17 +30,18 @@ namespace SolarOdyssey.Enemy
             PlayerMovement playerMovement,
             float jumpForce,
             float attackRange,
-            int attackDamage)
+            int attackDamage,
+            EarthBossAudio bossAudio)
         {
             this.rb = rb;
             this.boss = boss;
             this.player = player;
             this.animator = animator;
             this.playerMovement = playerMovement;
-
             this.jumpForce = jumpForce;
             this.attackRange = attackRange;
             this.attackDamage = attackDamage;
+            this.bossAudio = bossAudio;
         }
 
         public void Enter()
@@ -59,6 +61,12 @@ namespace SolarOdyssey.Enemy
 
             Debug.Log("Earth Boss Attack başladı");
 
+            // Boss zıplama sesi
+            if (bossAudio != null)
+            {
+                bossAudio.PlayJump();
+            }
+
             rb.linearVelocity = new Vector2(
                 0f,
                 jumpForce
@@ -77,6 +85,12 @@ namespace SolarOdyssey.Enemy
             while (!isGrounded)
             {
                 yield return null;
+            }
+
+            // Yere çarpma sesi
+            if (bossAudio != null)
+            {
+                bossAudio.PlaySlam();
             }
 
             DealSlamDamage();

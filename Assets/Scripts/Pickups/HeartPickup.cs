@@ -9,17 +9,24 @@ namespace SolarOdyssey
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if (!other.CompareTag("Player"))//player tagı yoksa işlemi durdur
+            if (!other.CompareTag("Player"))
                 return;
 
-            Health health = other.GetComponent<Health>(); //can bileşenini çek 
+            Health health = other.GetComponent<Health>();
 
             if (health != null)
             {
-                if (health.IsFullHealth())// fulsa içinden geç 
+                if (health.IsFullHealth())
                     return;
 
-                health.Heal(healAmount);//değilse canı belirlenen miktar al nesneyi yok et 
+                health.Heal(healAmount);
+
+                // Kalp toplama sesi
+                if (Audio.EnvironmentAudio.Instance != null)
+                {
+                    Audio.EnvironmentAudio.Instance.PlayHeart();
+                }
+
                 Destroy(gameObject);
             }
         }
