@@ -53,7 +53,8 @@ namespace SolarOdyssey.Enemy
                         new ChaseState(
                             rb,
                             player,
-                            moveSpeed
+                            moveSpeed,
+                            animator
                         )
                     );
                 }

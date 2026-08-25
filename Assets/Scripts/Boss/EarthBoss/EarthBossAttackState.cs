@@ -61,7 +61,6 @@ namespace SolarOdyssey.Enemy
 
             Debug.Log("Earth Boss Attack başladı");
 
-            // Boss zıplama sesi
             if (bossAudio != null)
             {
                 bossAudio.PlayJump();
@@ -78,7 +77,7 @@ namespace SolarOdyssey.Enemy
 
         private IEnumerator WaitForLanding()
         {
-            // Boss'un gerçekten havaya çıkmasını bekle.
+            // Bossun gerçekten havaya çıkmasını bekle.
             yield return new WaitForSeconds(0.2f);
 
             // Yere inmesini bekle.
@@ -87,12 +86,13 @@ namespace SolarOdyssey.Enemy
                 yield return null;
             }
 
-            // Yere çarpma sesi
+            // Yere çarpma sesi.
             if (bossAudio != null)
             {
                 bossAudio.PlaySlam();
             }
 
+            // Boss yere indiği anda slam hasarı.
             DealSlamDamage();
 
             yield return new WaitForSeconds(0.3f);
@@ -108,18 +108,18 @@ namespace SolarOdyssey.Enemy
             if (playerMovement == null)
                 return;
 
+            // Oyuncu havadaysa hasar yok.
+            if (!playerMovement.IsGrounded)
+                return;
+
             float horizontalDistance =
                 Mathf.Abs(
                     player.position.x -
                     boss.position.x
                 );
 
-            // 10 birim dışındaysa hasar yok.
+            // Oyuncu bossun saldırı alanındaysa hasar.
             if (horizontalDistance > attackRange)
-                return;
-
-            // Oyuncu havadaysa hasar yok.
-            if (!playerMovement.IsGrounded)
                 return;
 
             Health health =

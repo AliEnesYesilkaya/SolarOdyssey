@@ -23,67 +23,47 @@ namespace SolarOdyssey.Enemy
 
         public void PlayFootstep()
         {
-            PlayRandom(
-                footstepSounds,
-                footstepVolume
-            );
+            PlayRandom(footstepSounds, footstepVolume  );
         }
 
         public void PlayJump()
         {
-            PlaySound(
-                jumpSound,
-                jumpVolume
-            );
+            PlaySound(jumpSound, jumpVolume);
         }
 
         public void PlaySlam()
         {
-            PlaySound(
-                slamSound,
-                slamVolume
-            );
+            PlaySound(slamSound, slamVolume);
+            
         }
 
         public void PlayHurt()
         {
-            PlaySound(
-                hurtSound,
-                hurtVolume
-            );
+            PlaySound(hurtSound, hurtVolume);
+            
         }
 
         public void PlayDeath()
         {
-            PlaySound(
-                deathSound,
-                deathVolume
-            );
+            PlaySound(deathSound, deathVolume);
+            
         }
 
-        private void PlayRandom(
-            AudioClip[] clips,
-            float volume)
+        private void PlayRandom(AudioClip[] clips, float volume)
+            
         {
             if (audioSource == null)
                 return;
 
-            if (clips == null ||
-                clips.Length == 0)
+            if (clips == null || clips.Length == 0)
                 return;
 
-            int index =
-                Random.Range(0, clips.Length);
+            int index = Random.Range(0, clips.Length);
 
-            audioSource.PlayOneShot(
-                clips[index],
-                volume
-            );
+            audioSource.PlayOneShot(clips[index], volume);
         }
 
-        private void PlaySound(
-            AudioClip clip,
-            float volume)
+        private void PlaySound(AudioClip clip, float volume)
         {
             if (audioSource == null)
                 return;
@@ -91,10 +71,7 @@ namespace SolarOdyssey.Enemy
             if (clip == null)
                 return;
 
-            audioSource.PlayOneShot(
-                clip,
-                volume
-            );
+            audioSource.PlayOneShot(clip, volume);
         }
     }
 }

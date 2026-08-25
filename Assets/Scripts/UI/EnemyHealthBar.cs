@@ -26,7 +26,7 @@ namespace SolarOdyssey.Enemy
             lastHealth = health.CurrentHealth;
 
             healthBarFill.fillAmount = 1f;
-            healthBarFill.enabled = false;//can barını başlangıçta deaktif yap
+            healthBarFill.enabled = false;
         }
 
         private void Update()
@@ -36,7 +36,6 @@ namespace SolarOdyssey.Enemy
 
             int currentHealth = health.CurrentHealth;
 
-            // Düşman hasar aldı ise can görünür yap 
             if (currentHealth < lastHealth)
             {
                 healthBarFill.enabled = true;
@@ -45,11 +44,9 @@ namespace SolarOdyssey.Enemy
 
             lastHealth = currentHealth;
 
-            // Can yüzdesi
             healthBarFill.fillAmount =
                 (float)currentHealth / health.MaxHealth;
 
-            // Görünürlük süresi
             if (healthBarFill.enabled)
             {
                 hideTimer -= Time.deltaTime;

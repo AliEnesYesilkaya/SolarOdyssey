@@ -51,13 +51,24 @@ namespace SolarOdyssey.Enemy
                         new ChaseState(
                             rb,
                             player,
-                            moveSpeed
+                            moveSpeed,
+                            animator
                         )
                     );
                 }
 
-                // Oyuncuyu görünce koş
-                animator.SetFloat("Speed", 1f);
+                ChaseState chaseState =
+                    stateMachine.CurrentState as ChaseState;
+
+                if (chaseState != null &&
+                    chaseState.PlayerTooHigh)
+                {
+                    animator.SetFloat("Speed", 0f);
+                }
+                else
+                {
+                    animator.SetFloat("Speed", 1f);
+                }
             }
 
             // Oyuncu algılama menzilinin dışındaysa
