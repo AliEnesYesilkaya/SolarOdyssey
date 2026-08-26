@@ -12,9 +12,14 @@ namespace SolarOdyssey.Enemy
         {
             base.Awake();
 
-            stateMachine.Initialize( //state machine başlangıcı a b noktaları arası devriye 
-                new Enemy2PatrolState(rb, patrolPointA, patrolPointB, moveSpeed)
-                   );
+            stateMachine.Initialize(
+                new Enemy2PatrolState(
+                    rb,
+                    patrolPointA,
+                    patrolPointB,
+                    moveSpeed
+                )
+            );
         }
 
         protected override void Update()
@@ -24,15 +29,16 @@ namespace SolarOdyssey.Enemy
             if (player == null)
                 return;
 
-            float distance = Vector2.Distance(
-                transform.position,
-                player.position
-            );
+            float distance =
+                Vector2.Distance(
+                    transform.position,
+                    player.position
+                );
 
-            // Saldırı menzilindeyse Attack
             if (distance <= attackRange)
             {
-                if (stateMachine.CurrentState is not AttackState)
+                if (stateMachine.CurrentState
+                    is not AttackState)
                 {
                     stateMachine.ChangeState(
                         new AttackState(
@@ -44,10 +50,10 @@ namespace SolarOdyssey.Enemy
                     );
                 }
             }
-            // Algılama menzilindeyse Chase
             else if (distance <= detectionRange)
             {
-                if (stateMachine.CurrentState is not ChaseState)
+                if (stateMachine.CurrentState
+                    is not ChaseState)
                 {
                     stateMachine.ChangeState(
                         new ChaseState(
@@ -59,10 +65,10 @@ namespace SolarOdyssey.Enemy
                     );
                 }
             }
-            // Algılama alanından çıktıysa Patrol
             else
             {
-                if (stateMachine.CurrentState is not Enemy2PatrolState)
+                if (stateMachine.CurrentState
+                    is not Enemy2PatrolState)
                 {
                     stateMachine.ChangeState(
                         new Enemy2PatrolState(
@@ -74,6 +80,20 @@ namespace SolarOdyssey.Enemy
                     );
                 }
             }
+        }
+
+        public override void ResetToStart()
+        {
+            base.ResetToStart();
+
+            stateMachine.Initialize(
+                new Enemy2PatrolState(
+                    rb,
+                    patrolPointA,
+                    patrolPointB,
+                    moveSpeed
+                )
+            );
         }
     }
 }

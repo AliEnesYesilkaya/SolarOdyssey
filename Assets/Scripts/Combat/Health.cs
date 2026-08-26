@@ -10,10 +10,13 @@ namespace SolarOdyssey.Combat
         [SerializeField] private int maxHealth = 100;
 
         private int currentHealth;
+
         private Animator animator;
         private PlayerAudio playerAudio;
         private PlayerController playerController;
         private PlayerMovement playerMovement;
+        private PlayerLifeSystem playerLifeSystem;
+
         private EnemyBase enemyBase;
         private EarthBoss earthBoss;
 
@@ -24,12 +27,26 @@ namespace SolarOdyssey.Combat
 
         private void Awake()
         {
-            animator = GetComponentInChildren<Animator>();
-            playerAudio = GetComponent<PlayerAudio>();
-            playerController = GetComponent<PlayerController>();
-            playerMovement = GetComponent<PlayerMovement>();
-            enemyBase = GetComponent<EnemyBase>();
-            earthBoss = GetComponent<EarthBoss>();
+            animator =
+                GetComponentInChildren<Animator>();
+
+            playerAudio =
+                GetComponent<PlayerAudio>();
+
+            playerController =
+                GetComponent<PlayerController>();
+
+            playerMovement =
+                GetComponent<PlayerMovement>();
+
+            playerLifeSystem =
+                GetComponent<PlayerLifeSystem>();
+
+            enemyBase =
+                GetComponent<EnemyBase>();
+
+            earthBoss =
+                GetComponent<EarthBoss>();
 
             // BOSS
             if (earthBoss != null)
@@ -39,7 +56,6 @@ namespace SolarOdyssey.Combat
 
             currentHealth = maxHealth;
         }
-
 
         public void TakeDamage(int damage)
         {
@@ -75,7 +91,6 @@ namespace SolarOdyssey.Combat
                     animator.SetTrigger("Hurt");
                 }
 
-                // Hurt sesi
                 if (playerAudio != null)
                 {
                     playerAudio.PlayHurt();
@@ -88,6 +103,7 @@ namespace SolarOdyssey.Combat
                 Die();
             }
         }
+
         public void Heal(int amount)
         {
             if (isDead)
@@ -109,12 +125,16 @@ namespace SolarOdyssey.Combat
         private void Die()
         {
             isDead = true;
+
             if (playerAudio != null)
             {
                 playerAudio.PlayDeath();
             }
 
-            Debug.Log(gameObject.name + " Dead!");
+            Debug.Log(
+                gameObject.name +
+                " Dead!"
+            );
 
             if (animator != null)
             {
@@ -147,24 +167,58 @@ namespace SolarOdyssey.Combat
 
             // NORMAL ENEMY
             if (enemyBase != null)
-
             {
                 enemyBase.PlayDeath();
                 enemyBase.enabled = false;
 
+                // Enemy'i yok etmiyoruz.
+                // Dünya resetlendiðinde tekrar aktif edeceðiz.
                 Invoke(
-                    nameof(DestroyCharacter),
+                    nameof(DisableEnemy),
                     0.7f
                 );
 
                 return;
             }
 
-            // PLAYER RESPAWN
+            // PLAYER LIFE SYSTEM
+            if (playerLifeSystem != null)
+            {
+                // Oyuncunun kalbini azalt.
+                playerLifeSystem.LoseLife();
+
+                // Hâlâ kalp varsa checkpoint'e dön.
+                if (playerLifeSystem.CurrentLives > 0)
+                {
+                    Invoke(
+                        nameof(Respawn),
+                        0.7f
+                    );
+                }
+
+                // Bütün kalpler bittiyse oyunu durdur.
+                if (playerLifeSystem.CurrentLives <= 0)
+                {
+                    Debug.Log(
+                        "Bütün kalpler bitti. Oyun durduruldu."
+                    );
+
+                    Time.timeScale = 0f;
+                }
+
+                return;
+            }
+
+            // Güvenlik
             Invoke(
                 nameof(Respawn),
                 0.7f
             );
+        }
+
+        private void DisableEnemy()
+        {
+            gameObject.SetActive(false);
         }
 
         private void DestroyCharacter()
@@ -173,6 +227,17 @@ namespace SolarOdyssey.Combat
         }
 
         private void Respawn()
+        {
+            if (RespawnManager.Instance != null)//tüm karakterleri respawnmanagere göre spawn et 
+            {
+                RespawnManager.Instance.RespawnPlayer(this);
+                return;
+            }
+
+            RespawnAtCheckpoint();
+        }
+
+        public void RespawnAtCheckpoint()
         {
             if (Checkpoint.HasCheckpoint)
             {
@@ -197,6 +262,20 @@ namespace SolarOdyssey.Combat
             if (playerController != null)
             {
                 playerController.enabled = true;
+            }
+        }
+
+        // Enemy dünyaya geri döndüðünde
+        // Health sistemini tamamen baþlangýç haline getirir.
+        public void ResetHealth()
+        {
+            currentHealth = maxHealth;
+            isDead = false;
+
+            if (animator != null)
+            {
+                animator.Rebind();
+                animator.Update(0f);
             }
         }
     }

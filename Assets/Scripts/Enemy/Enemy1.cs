@@ -4,11 +4,13 @@ namespace SolarOdyssey.Enemy
 {
     public class Enemy1 : EnemyBase
     {
-        protected override void Awake() // EnemyBase'i çalıştır ve ilk durum olarak devriye at
+        protected override void Awake()
         {
             base.Awake();
 
-            stateMachine.Initialize(new PatrolState());
+            stateMachine.Initialize(
+                new PatrolState()
+            );
         }
 
         protected override void Update()
@@ -18,15 +20,16 @@ namespace SolarOdyssey.Enemy
             if (player == null)
                 return;
 
-            float distance = Vector2.Distance(
-                transform.position,
-                player.position
-            );
+            float distance =
+                Vector2.Distance(
+                    transform.position,
+                    player.position
+                );
 
-            // Saldırı menzilindeyse Attack
             if (distance <= attackRange)
             {
-                if (stateMachine.CurrentState is not AttackState)
+                if (stateMachine.CurrentState
+                    is not AttackState)
                 {
                     stateMachine.ChangeState(
                         new AttackState(
@@ -38,14 +41,15 @@ namespace SolarOdyssey.Enemy
                     );
                 }
 
-                // Saldırırken koşma animasyonu oynatma
-                animator.SetFloat("Speed", 0f);
+                animator.SetFloat(
+                    "Speed",
+                    0f
+                );
             }
-
-            // Algılama menzilindeyse Chase
             else if (distance <= detectionRange)
             {
-                if (stateMachine.CurrentState is not ChaseState)
+                if (stateMachine.CurrentState
+                    is not ChaseState)
                 {
                     stateMachine.ChangeState(
                         new ChaseState(
@@ -58,24 +62,48 @@ namespace SolarOdyssey.Enemy
                 }
 
                 ChaseState chaseState =
-                    stateMachine.CurrentState as ChaseState;
+                    stateMachine.CurrentState
+                    as ChaseState;
 
                 if (chaseState != null &&
                     chaseState.PlayerTooHigh)
                 {
-                    animator.SetFloat("Speed", 0f);
+                    animator.SetFloat(
+                        "Speed",
+                        0f
+                    );
                 }
                 else
                 {
-                    animator.SetFloat("Speed", 1f);
+                    animator.SetFloat(
+                        "Speed",
+                        1f
+                    );
                 }
             }
-
-            // Oyuncu algılama menzilinin dışındaysa
             else
             {
-                // Şimdilik Idle
-                animator.SetFloat("Speed", 0f);
+                animator.SetFloat(
+                    "Speed",
+                    0f
+                );
+            }
+        }
+
+        public override void ResetToStart()
+        {
+            base.ResetToStart();
+
+            stateMachine.Initialize(
+                new PatrolState()
+            );
+
+            if (animator != null)
+            {
+                animator.SetFloat(
+                    "Speed",
+                    0f
+                );
             }
         }
     }

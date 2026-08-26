@@ -22,6 +22,9 @@ namespace SolarOdyssey.Enemy
         private bool isGrounded;
         private bool attacking;
 
+      
+        private float knockbackForce = 5f;
+
         public EarthBossAttackState(
             Rigidbody2D rb,
             Transform boss,
@@ -127,7 +130,28 @@ namespace SolarOdyssey.Enemy
 
             if (health != null)
             {
+                // Hasar ver.
                 health.TakeDamage(attackDamage);
+
+               
+                Rigidbody2D playerRb =
+                    player.GetComponent<Rigidbody2D>();
+
+                if (playerRb != null)
+                {
+                    // Oyuncu bossun solundaysa sola,
+                    // sağındaysa sağa it.
+                    float pushDirection =
+                        player.position.x >= boss.position.x
+                            ? 1f
+                            : -1f;
+                    //fizik hızına bağlı sabit itme 
+                    playerRb.linearVelocity =
+                        new Vector2(
+                            pushDirection * knockbackForce,
+                            playerRb.linearVelocity.y
+                        );
+                }
 
                 Debug.Log(
                     "Earth Boss slam: " +

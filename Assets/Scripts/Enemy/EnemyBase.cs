@@ -27,8 +27,15 @@ namespace SolarOdyssey.Enemy
 
         protected StateMachine stateMachine;
 
+        private Vector3 startPosition;
+        private Quaternion startRotation;
+
         protected virtual void Awake()
         {
+            // Oyunun ilk açıldığı konumu kaydet.
+            startPosition = transform.position;
+            startRotation = transform.rotation;
+
             GameObject playerObject =
                 GameObject.FindGameObjectWithTag("Player");
 
@@ -39,39 +46,42 @@ namespace SolarOdyssey.Enemy
 
             rb = GetComponent<Rigidbody2D>();
 
-            animator = GetComponentInChildren<Animator>();
+            animator =
+                GetComponentInChildren<Animator>();
 
-            stateMachine = new StateMachine();
+            stateMachine =
+                new StateMachine();
 
-            // ------------------------------------------------
-            // ÜST ENEMY OBJESİNDEKİ ORTAK SESLERİ BUL
-            // ------------------------------------------------
-
+            // Ortak sesleri üst Enemy objesinden bul.
             EnemyBase[] enemyBases =
                 GetComponentsInParent<EnemyBase>(true);
 
             foreach (EnemyBase enemy in enemyBases)
             {
-                // Kendimizi atla
                 if (enemy == this)
                     continue;
 
-                // Üst Enemy objesindeki sesleri kullan
                 if (audioSource == null)
                     audioSource = enemy.audioSource;
 
                 if (footstepSounds == null ||
                     footstepSounds.Length == 0)
                 {
-                    footstepSounds = enemy.footstepSounds;
+                    footstepSounds =
+                        enemy.footstepSounds;
                 }
 
                 if (deathSound == null)
                     deathSound = enemy.deathSound;
 
-                footstepVolume = enemy.footstepVolume;
-                deathVolume = enemy.deathVolume;
-                footstepInterval = enemy.footstepInterval;
+                footstepVolume =
+                    enemy.footstepVolume;
+
+                deathVolume =
+                    enemy.deathVolume;
+
+                footstepInterval =
+                    enemy.footstepInterval;
 
                 break;
             }
@@ -100,14 +110,12 @@ namespace SolarOdyssey.Enemy
             if (rb == null)
                 return;
 
-            // Yatay hareket etmiyorsa ses çıkarma.
             if (Mathf.Abs(rb.linearVelocity.x) < 0.1f)
             {
                 footstepTimer = 0f;
                 return;
             }
 
-            // Havada giderken ayak sesi çıkarma.
             if (Mathf.Abs(rb.linearVelocity.y) > 0.1f)
             {
                 footstepTimer = 0f;
@@ -120,7 +128,8 @@ namespace SolarOdyssey.Enemy
             {
                 PlayFootstep();
 
-                footstepTimer = footstepInterval;
+                footstepTimer =
+                    footstepInterval;
             }
         }
 
@@ -134,7 +143,10 @@ namespace SolarOdyssey.Enemy
                 return;
 
             int index =
-                Random.Range(0, footstepSounds.Length);
+                Random.Range(
+                    0,
+                    footstepSounds.Length
+                );
 
             audioSource.PlayOneShot(
                 footstepSounds[index],
@@ -161,35 +173,39 @@ namespace SolarOdyssey.Enemy
             if (player == null)
                 return;
 
-            Transform visual = transform.Find("Visual");
+            Transform visual =
+                transform.Find("Visual");
 
             if (visual == null)
                 return;
 
-            float direction = Mathf.Sign(
-                player.position.x - transform.position.x
-            );
+            float direction =
+                Mathf.Sign(
+                    player.position.x -
+                    transform.position.x
+                );
 
-            Vector3 scale = visual.localScale;
+            Vector3 scale =
+                visual.localScale;
 
             scale.x =
-                Mathf.Abs(scale.x) * direction;
+                Mathf.Abs(scale.x) *
+                direction;
 
             visual.localScale = scale;
         }
 
-        // Animasyon çağrılacak
         public void AttackHit()
         {
             if (player == null)
                 return;
 
-            float distance = Vector2.Distance(
-                transform.position,
-                player.position
-            );
+            float distance =
+                Vector2.Distance(
+                    transform.position,
+                    player.position
+                );
 
-            // Oyuncu gerçekten saldırı menzilindeyse hasar ver.
             if (distance > attackRange)
                 return;
 
@@ -198,7 +214,9 @@ namespace SolarOdyssey.Enemy
 
             if (health != null)
             {
-                health.TakeDamage(attackDamage);
+                health.TakeDamage(
+                    attackDamage
+                );
 
                 Debug.Log(
                     gameObject.name +
@@ -206,6 +224,43 @@ namespace SolarOdyssey.Enemy
                     attackDamage +
                     " hasar verdi."
                 );
+            }
+        }
+
+        //reset world
+        public virtual void ResetToStart()
+        {
+            // Önce GameObject'i tekrar aç.
+            gameObject.SetActive(true);
+
+            // Enemy scripti ölümde kapatılmış olabilir.
+            enabled = true;
+
+            // Fizik hareketini sıfırla.
+            if (rb != null)
+            {
+                rb.linearVelocity =
+                    Vector2.zero;
+
+                rb.angularVelocity = 0f;
+            }
+
+            // İlk konuma dön.
+            transform.position =
+                startPosition;
+
+            transform.rotation =
+                startRotation;
+
+            footstepTimer = 0f;
+
+            // Health'i tamamen sıfırla.
+            Health health =
+                GetComponent<Health>();
+
+            if (health != null)
+            {
+                health.ResetHealth();
             }
         }
     }

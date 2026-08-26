@@ -14,16 +14,32 @@ namespace SolarOdyssey.UI
             UpdateCoinText();
         }
 
-        public void AddGold(int amount) //gelen miktarı mevcut miktara ekle yazıyı eşitle
+        public void AddGold(int amount)
         {
             totalGold += amount;
 
             UpdateCoinText();
         }
 
+        // Kalp satın alma gibi sistemlerin
+        // altın harcayabilmesini sağlar.
+        public bool SpendGold(int amount)
+        {
+            // Yeterli altın yoksa satın alma başarısız.
+            if (totalGold < amount)
+                return false;
+
+            totalGold -= amount;
+
+            UpdateCoinText();
+
+            return true;
+        }
+
         private void UpdateCoinText()
         {
-            coinText.text = totalGold.ToString("D4");
+            coinText.text =
+                totalGold.ToString("D4");
         }
     }
 }
