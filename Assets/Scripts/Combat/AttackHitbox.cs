@@ -1,3 +1,4 @@
+using SolarOdyssey.Player;
 using UnityEngine;
 
 namespace SolarOdyssey.Combat
@@ -5,11 +6,16 @@ namespace SolarOdyssey.Combat
     public class AttackHitbox : MonoBehaviour
     {
         private Collider2D hitbox;
+        private PlayerUpgradeSystem upgradeSystem;
 
         private void Awake()
         {
             hitbox = GetComponent<Collider2D>();
+
             hitbox.enabled = false;
+
+            upgradeSystem =
+                GetComponentInParent<PlayerUpgradeSystem>();
         }
 
         public void EnableHitbox()
@@ -24,13 +30,25 @@ namespace SolarOdyssey.Combat
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            Health health = other.GetComponentInParent<Health>();
+            Health health =
+                other.GetComponentInParent<Health>();
 
-            if (health != null)
-            {
-                Debug.Log("ATTACK HITBOX ÇARPTI: " + other.name);
-                health.TakeDamage(10);
-            }
+            if (health == null)
+                return;
+
+            if (upgradeSystem == null)
+                return;
+
+            int swordDamage =
+                upgradeSystem.GetSwordDamage();
+
+            int bossDamage =
+                upgradeSystem.GetBossSwordDamage();
+
+            health.TakePlayerAttackDamage(
+                swordDamage,
+                bossDamage
+            );
         }
     }
 }

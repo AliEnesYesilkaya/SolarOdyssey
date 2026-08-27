@@ -104,6 +104,47 @@ namespace SolarOdyssey.Combat
             }
         }
 
+        public void TakePlayerAttackDamage(
+    int normalDamage,
+    int bossDamage)
+        {
+            if (isDead)
+                return;
+
+            int damage = normalDamage;
+
+            if (earthBoss != null)
+            {
+                damage = bossDamage;
+            }
+
+            currentHealth -= damage;
+
+            if (currentHealth < 0)
+            {
+                currentHealth = 0;
+            }
+
+            Debug.Log(
+                gameObject.name +
+                " oyuncu saldýrýsýndan " +
+                damage +
+                " hasar aldý."
+            );
+
+            if (currentHealth > 0)
+            {
+                if (animator != null)
+                {
+                    animator.SetTrigger("Hurt");
+                }
+            }
+
+            if (currentHealth <= 0)
+            {
+                Die();
+            }
+        }
         public void Heal(int amount)
         {
             if (isDead)

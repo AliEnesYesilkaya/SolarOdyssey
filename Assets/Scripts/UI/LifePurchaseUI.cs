@@ -1,6 +1,4 @@
 using SolarOdyssey.Player;
-using SolarOdyssey.Combat;
-using SolarOdyssey.Core;
 using UnityEngine;
 
 namespace SolarOdyssey.UI
@@ -8,15 +6,11 @@ namespace SolarOdyssey.UI
     public class LifePurchaseUI : MonoBehaviour
     {
         private PlayerLifeSystem playerLifeSystem;
-        private Health playerHealth;
 
         private void Awake()
         {
             playerLifeSystem =
                 FindFirstObjectByType<PlayerLifeSystem>();
-
-            playerHealth =
-                FindFirstObjectByType<Health>();
         }
 
         public void Show()
@@ -36,26 +30,8 @@ namespace SolarOdyssey.UI
 
             if (playerLifeSystem.BuyOneLife())
             {
-                // Can satın alındığında oyuncuyu
-                // checkpoint'e gönder ve dünyayı resetle.
-                if (playerHealth != null)
-                {
-                    if (RespawnManager.Instance != null)
-                    {
-                        RespawnManager.Instance.RespawnPlayer(
-                            playerHealth
-                        );
-                    }
-                    else
-                    {
-                        playerHealth.RespawnAtCheckpoint();
-                    }
-                }
-
-                // Oyunu tekrar çalıştır.
                 Time.timeScale = 1f;
 
-                // Satın alma ekranını kapat.
                 Hide();
             }
         }
@@ -67,26 +43,8 @@ namespace SolarOdyssey.UI
 
             if (playerLifeSystem.BuyFiveLives())
             {
-                // 5 can satın alındığında oyuncuyu
-                // checkpoint'e gönder ve dünyayı resetle.
-                if (playerHealth != null)
-                {
-                    if (RespawnManager.Instance != null)
-                    {
-                        RespawnManager.Instance.RespawnPlayer(
-                            playerHealth
-                        );
-                    }
-                    else
-                    {
-                        playerHealth.RespawnAtCheckpoint();
-                    }
-                }
-
-                // Oyunu tekrar çalıştır.
                 Time.timeScale = 1f;
 
-                // Satın alma ekranını kapat.
                 Hide();
             }
         }

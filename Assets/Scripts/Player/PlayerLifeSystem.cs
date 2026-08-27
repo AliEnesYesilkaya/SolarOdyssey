@@ -46,6 +46,13 @@ namespace SolarOdyssey.Player
             playerHealth =
                 GetComponent<Health>();
 
+            currentLives =
+                Mathf.Clamp(
+                    currentLives,
+                    0,
+                    maxLives
+                );
+
             regenerationTimer =
                 lifeRegenerationTime;
 
@@ -70,27 +77,29 @@ namespace SolarOdyssey.Player
 
         private void Update()
         {
-            // 5 kalp varsa timer çalışmaz.
             if (currentLives >= maxLives)
-                return;
+            {
+                if (lifeTimerUI != null)
+                {
+                    lifeTimerUI.Hide();
+                }
 
-            // Oyun durmuş olsa bile gerçek zaman ilerlesin.
+                return;
+            }
+
             regenerationTimer -=
                 Time.unscaledDeltaTime;
 
             if (regenerationTimer <= 0f)
             {
                 AddLife();
-
-                if (currentLives < maxLives)
-                {
-                    regenerationTimer =
-                        lifeRegenerationTime;
-                }
+                return;
             }
 
             if (lifeTimerUI != null)
             {
+                lifeTimerUI.Show();
+
                 lifeTimerUI.UpdateTimer(
                     regenerationTimer
                 );
@@ -117,24 +126,24 @@ namespace SolarOdyssey.Player
                 );
             }
 
-            // İlk kalp kaybedildiğinde timer başlar.
+            // İlk can kaybında timer başlar.
             if (currentLives == maxLives - 1)
             {
                 regenerationTimer =
                     lifeRegenerationTime;
-
-                if (lifeTimerUI != null)
-                {
-                    lifeTimerUI.Show();
-
-                    lifeTimerUI.UpdateTimer(
-                        regenerationTimer
-                    );
-                }
             }
 
-            // Bütün kalpler bittiyse
-            // satın alma ekranını aç ve oyunu durdur.
+            if (currentLives < maxLives &&
+                lifeTimerUI != null)
+            {
+                lifeTimerUI.Show();
+
+                lifeTimerUI.UpdateTimer(
+                    regenerationTimer
+                );
+            }
+
+            // Bütün canlar bittiyse satın alma ekranı açılır.
             if (currentLives <= 0)
             {
                 Debug.Log(
@@ -178,42 +187,27 @@ namespace SolarOdyssey.Player
                 );
             }
 
-            // Eğer 0 kalpten timer sayesinde
-            // tekrar 1 kalbe çıktıysak oyuncuyu
-            // normal respawn sistemiyle geri getir.
+            // 0 candan tekrar 1 cana çıktıysak
+            // oyuncuyu ve dünyayı yeniden başlat.
             if (currentLives == 1 &&
                 Time.timeScale == 0f)
             {
-                if (playerHealth != null)
-                {
-                    // ÖNEMLİ:
-                    // Sadece oyuncuyu değil,
-                    // dünyayı da resetle.
-                    if (RespawnManager.Instance != null)
-                    {
-                        RespawnManager.Instance.RespawnPlayer(
-                            playerHealth
-                        );
-                    }
-                    else
-                    {
-                        playerHealth.RespawnAtCheckpoint();
-                    }
-                }
+                RespawnPlayer();
 
-                // Satın alma ekranını kapat.
                 if (lifePurchaseUI != null)
                 {
                     lifePurchaseUI.Hide();
                 }
 
-                // Oyunu devam ettir.
                 Time.timeScale = 1f;
             }
 
-            // 5 kalbe ulaştıysak timerı kapat.
+            // Canlar tamamen dolduysa timer kapanır.
             if (currentLives >= maxLives)
             {
+                currentLives =
+                    maxLives;
+
                 regenerationTimer =
                     lifeRegenerationTime;
 
@@ -225,7 +219,7 @@ namespace SolarOdyssey.Player
                 return;
             }
 
-            // Sonraki kalp için yeni süre başlat.
+            // Sonraki can için timer yeniden başlar.
             regenerationTimer =
                 lifeRegenerationTime;
 
@@ -239,6 +233,23 @@ namespace SolarOdyssey.Player
             }
         }
 
+        private void RespawnPlayer()
+        {
+            if (playerHealth == null)
+                return;
+
+            if (RespawnManager.Instance != null)
+            {
+                RespawnManager.Instance.RespawnPlayer(
+                    playerHealth
+                );
+            }
+            else
+            {
+                playerHealth.RespawnAtCheckpoint();
+            }
+        }
+
         public bool BuyOneLife()
         {
             if (currentLives >= maxLives)
@@ -247,7 +258,7 @@ namespace SolarOdyssey.Player
             if (coinUI == null)
                 return false;
 
-            if (!coinUI.SpendGold(100))
+            if (!coinUI.SpendGold(150))
                 return false;
 
             AddLife();
@@ -263,7 +274,7 @@ namespace SolarOdyssey.Player
             if (coinUI == null)
                 return false;
 
-            if (!coinUI.SpendGold(300))
+            if (!coinUI.SpendGold(500))
                 return false;
 
             currentLives =
@@ -284,6 +295,10 @@ namespace SolarOdyssey.Player
             {
                 lifeTimerUI.Hide();
             }
+
+            // 5 can satın alındığında oyuncuyu
+            // tekrar canlı hale getir.
+            RespawnPlayer();
 
             return true;
         }
