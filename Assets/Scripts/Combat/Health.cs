@@ -9,6 +9,9 @@ namespace SolarOdyssey.Combat
     {
         [SerializeField] private int maxHealth = 100;
 
+        // Boss öldüðünde oynatýlacak efekt.
+        [SerializeField] private GameObject bossDeathEffect;
+
         private int currentHealth;
 
         private Animator animator;
@@ -16,6 +19,9 @@ namespace SolarOdyssey.Combat
         private PlayerController playerController;
         private PlayerMovement playerMovement;
         private PlayerLifeSystem playerLifeSystem;
+
+        // Oyuncu hasar alma görsel efekti
+        private PlayerDamageEffect playerDamageEffect;
 
         private EnemyBase enemyBase;
         private EarthBoss earthBoss;
@@ -41,6 +47,10 @@ namespace SolarOdyssey.Combat
 
             playerLifeSystem =
                 GetComponent<PlayerLifeSystem>();
+
+            // PlayerDamageEffect Player üzerinde varsa bulur.
+            playerDamageEffect =
+                GetComponent<PlayerDamageEffect>();
 
             enemyBase =
                 GetComponent<EnemyBase>();
@@ -91,9 +101,16 @@ namespace SolarOdyssey.Combat
                     animator.SetTrigger("Hurt");
                 }
 
+                // Oyuncu hasar alma sesi
                 if (playerAudio != null)
                 {
                     playerAudio.PlayHurt();
+                }
+
+                // Oyuncu hasar alma görsel efekti
+                if (playerDamageEffect != null)
+                {
+                    playerDamageEffect.PlayDamageEffect();
                 }
             }
 
@@ -105,8 +122,8 @@ namespace SolarOdyssey.Combat
         }
 
         public void TakePlayerAttackDamage(
-    int normalDamage,
-    int bossDamage)
+            int normalDamage,
+            int bossDamage)
         {
             if (isDead)
                 return;
@@ -145,6 +162,7 @@ namespace SolarOdyssey.Combat
                 Die();
             }
         }
+
         public void Heal(int amount)
         {
             if (isDead)
@@ -197,6 +215,16 @@ namespace SolarOdyssey.Combat
             if (earthBoss != null)
             {
                 earthBoss.SetDead();
+
+                // Boss öldüðünde havai fiþek efektini oluþtur.
+                if (bossDeathEffect != null)
+                {
+                    Instantiate(
+                        bossDeathEffect,
+                        transform.position,
+                        Quaternion.identity
+                    );
+                }
 
                 Invoke(
                     nameof(DestroyCharacter),
@@ -269,8 +297,9 @@ namespace SolarOdyssey.Combat
 
         private void Respawn()
         {
-            if (RespawnManager.Instance != null)//tüm karakterleri respawnmanagere göre spawn et 
+            if (RespawnManager.Instance != null)
             {
+                // Tüm karakterleri RespawnManager'a göre spawn et.
                 RespawnManager.Instance.RespawnPlayer(this);
                 return;
             }

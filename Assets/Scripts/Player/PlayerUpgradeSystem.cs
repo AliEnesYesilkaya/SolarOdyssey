@@ -1,3 +1,4 @@
+using SolarOdyssey.Core;
 using UnityEngine;
 
 namespace SolarOdyssey.Player
@@ -26,12 +27,33 @@ namespace SolarOdyssey.Player
         public float PotionRemainingTime =>
             potionRemainingTime;
 
+        private void Awake()
+        {
+            // Daha önce kayıt yapılmışsa
+            // yükseltmeleri geri yükle.
+            if (SaveSystem.Instance != null)
+            {
+                swordLevel =
+                    SaveSystem.Instance.LoadSwordLevel();
+
+                knifeLevel =
+                    SaveSystem.Instance.LoadKnifeLevel();
+
+                knifeCount =
+                    SaveSystem.Instance.LoadKnifeCount();
+
+                potionCount =
+                    SaveSystem.Instance.LoadPotionCount();
+            }
+        }
+
         private void Update()
         {
             if (potionRemainingTime <= 0f)
                 return;
 
-            potionRemainingTime -= Time.deltaTime;
+            potionRemainingTime -=
+                Time.deltaTime;
 
             if (potionRemainingTime < 0f)
             {
@@ -73,6 +95,13 @@ namespace SolarOdyssey.Player
 
             swordLevel++;
 
+            if (SaveSystem.Instance != null)
+            {
+                SaveSystem.Instance.SaveSwordLevel(
+                    swordLevel
+                );
+            }
+
             return true;
         }
 
@@ -87,6 +116,13 @@ namespace SolarOdyssey.Player
 
             knifeLevel++;
 
+            if (SaveSystem.Instance != null)
+            {
+                SaveSystem.Instance.SaveKnifeLevel(
+                    knifeLevel
+                );
+            }
+
             return true;
         }
 
@@ -100,6 +136,13 @@ namespace SolarOdyssey.Player
                 return;
 
             knifeCount += amount;
+
+            if (SaveSystem.Instance != null)
+            {
+                SaveSystem.Instance.SaveKnifeCount(
+                    knifeCount
+                );
+            }
         }
 
         public bool UseKnife()
@@ -108,6 +151,13 @@ namespace SolarOdyssey.Player
                 return false;
 
             knifeCount--;
+
+            if (SaveSystem.Instance != null)
+            {
+                SaveSystem.Instance.SaveKnifeCount(
+                    knifeCount
+                );
+            }
 
             return true;
         }
@@ -122,6 +172,13 @@ namespace SolarOdyssey.Player
                 return;
 
             potionCount++;
+
+            if (SaveSystem.Instance != null)
+            {
+                SaveSystem.Instance.SavePotionCount(
+                    potionCount
+                );
+            }
         }
 
         // ------------------------------------------------
@@ -138,7 +195,15 @@ namespace SolarOdyssey.Player
 
             potionCount--;
 
-            potionRemainingTime = duration;
+            potionRemainingTime =
+                duration;
+
+            if (SaveSystem.Instance != null)
+            {
+                SaveSystem.Instance.SavePotionCount(
+                    potionCount
+                );
+            }
 
             return true;
         }

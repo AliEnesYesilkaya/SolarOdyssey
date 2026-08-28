@@ -1,0 +1,410 @@
+fileFormatVersion: 2
+guid: 7a5c21be937b72d44a57542228aa8feb
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -504039479832560065
+    second: FireWork_002_Lite_0
+  - first:
+      213: 6141929154869516341
+    second: FireWork_002_Lite_1
+  - first:
+      213: -723685258801209546
+    second: FireWork_002_Lite_2
+  - first:
+      213: -7940849448643512789
+    second: FireWork_002_Lite_3
+  - first:
+      213: -6469614445958700464
+    second: FireWork_002_Lite_4
+  - first:
+      213: 301974887091761145
+    second: FireWork_002_Lite_5
+  - first:
+      213: -6051697300548195692
+    second: FireWork_002_Lite_6
+  - first:
+      213: -6226860777957718935
+    second: FireWork_002_Lite_7
+  - first:
+      213: -7800744393866760534
+    second: FireWork_002_Lite_8
+  - first:
+      213: -4529614304341354415
+    second: FireWork_002_Lite_9
+  - first:
+      213: 893044302605270375
+    second: FireWork_002_Lite_10
+  - first:
+      213: -5552501875341848659
+    second: FireWork_002_Lite_11
+  - first:
+      213: -1004618250851162780
+    second: FireWork_002_Lite_12
+  - first:
+      213: 6941856267968002152
+    second: FireWork_002_Lite_13
+  - first:
+      213: -6515941084900354803
+    second: FireWork_002_Lite_14
+  - first:
+      213: 8709986358157476272
+    second: FireWork_002_Lite_15
+  - first:
+      213: 995968636312214985
+    second: FireWork_002_Lite_16
+  - first:
+      213: 2186959976573517321
+    second: FireWork_002_Lite_17
+  - first:
+      213: -2857869715212494495
+    second: FireWork_002_Lite_18
+  - first:
+      213: -8093667290147585042
+    second: FireWork_002_Lite_19
+  - first:
+      213: -14173126194793208
+    second: FireWork_002_Lite_20
+  - first:
+      213: 1031681603391021348
+    second: FireWork_002_Lite_21
+  - first:
+      213: -6109561389771800775
+    second: FireWork_002_Lite_22
+  - first:
+      213: 7726492782987982459
+    second: FireWork_002_Lite_23
+  - first:
+      213: -8933336800055337116
+    second: FireWork_002_Lite_24
+  - first:
+      213: 3824334545789333782
+    second: FireWork_002_Lite_25
+  - first:
+      213: 6800944806597955190
+    second: FireWork_002_Lite_26
+  - first:
+      213: -3355074173605743333
+    second: FireWork_002_Lite_27
+  - first:
+      213: -1959777305796527774
+    second: FireWork_002_Lite_28
+  - first:
+      213: -6892037064854887362
+    second: FireWork_002_Lite_29
+  - first:
+      213: -6856816496718169897
+    second: FireWork_002_Lite_30
+  - first:
+      213: 4078854998820768039
+    second: FireWork_002_Lite_31
+  - first:
+      213: 4462760646564829994
+    second: FireWork_002_Lite_32
+  - first:
+      213: -8636988433162278517
+    second: FireWork_002_Lite_33
+  - first:
+      213: -170951357683371846
+    second: FireWork_002_Lite_34
+  - first:
+      213: 87819923013512523
+    second: FireWork_002_Lite_35
+  - first:
+      213: 7957649151154658159
+    second: FireWork_002_Lite_36
+  - first:
+      213: -8488645263608694432
+    second: FireWork_002_Lite_37
+  - first:
+      213: 4203747750750896807
+    second: FireWork_002_Lite_38
+  - first:
+      213: 4043850227989803002
+    second: FireWork_002_Lite_39
+  - first:
+      213: 1583560634030706770
+    second: FireWork_002_Lite_40
+  - first:
+      213: -2594138255991188561
+    second: FireWork_002_Lite_41
+  - first:
+      213: 1113010407790425132
+    second: FireWork_002_Lite_42
+  - first:
+      213: -8559074357394603825
+    second: FireWork_002_Lite_43
+  - first:
+      213: -6403433517079407417
+    second: FireWork_002_Lite_44
+  - first:
+      213: -8039373931241597925
+    second: FireWork_002_Lite_45
+  - first:
+      213: 3039832610264067982
+    second: FireWork_002_Lite_46
+  - first:
+      213: 1243435609124026035
+    second: FireWork_002_Lite_47
+  - first:
+      213: -5034788495159756925
+    second: FireWork_002_Lite_48
+  - first:
+      213: -1984856846567714414
+    second: FireWork_002_Lite_49
+  - first:
+      213: 7051069879576586896
+    second: FireWork_002_Lite_50
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: FireWork_002_Lite_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 320
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f3ebecb73ca4109f0800000000000000
+      internalID: -504039479832560065
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireWork_002_Lite_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 256
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 538dc9766048c3550800000000000000
+      internalID: 6141929154869516341
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireWork_002_Lite_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 63f97f36714f4f5f0800000000000000
+      internalID: -723685258801209546
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireWork_002_Lite_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b263fb6bf7f6cc190800000000000000
+      internalID: -7940849448643512789
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireWork_002_Lite_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 05265ea50ff4736a0800000000000000
+      internalID: -6469614445958700464
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireWork_002_Lite_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9ff61345f84d03400800000000000000
+      internalID: 301974887091761145
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: a92c7049d6609f54ab05d1ebb55d50ec
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      FireWork_002_Lite_0: -504039479832560065
+      FireWork_002_Lite_1: 6141929154869516341
+      FireWork_002_Lite_2: -723685258801209546
+      FireWork_002_Lite_3: -7940849448643512789
+      FireWork_002_Lite_4: -6469614445958700464
+      FireWork_002_Lite_5: 301974887091761145
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

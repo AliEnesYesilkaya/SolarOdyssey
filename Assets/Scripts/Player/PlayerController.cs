@@ -22,7 +22,11 @@ namespace SolarOdyssey.Player
         [SerializeField] private GameObject knifePrefab;
         [SerializeField] private Transform knifePoint;
 
+        [Header("Attack Settings")]
+        [SerializeField] private float attackCooldown = 0.2f;
+
         private bool isAttacking;
+        private bool attackOnCooldown;
 
         private void Awake()
         {
@@ -90,8 +94,10 @@ namespace SolarOdyssey.Player
             }
 
             // F tuşuna basınca kılıçla saldır.
+            // Saldırı devam etmiyorsa ve cooldown bitmişse saldır.
             if (Keyboard.current.fKey.wasPressedThisFrame &&
-                !isAttacking)
+                !isAttacking &&
+                !attackOnCooldown)
             {
                 StartCoroutine(Attack());
             }
@@ -107,13 +113,22 @@ namespace SolarOdyssey.Player
         {
             isAttacking = true;
 
+            // -----------------------------------------
+            // SALDIRI BAŞLANGICI
+            // -----------------------------------------
+
             // Attack animasyonunu başlat.
             animator.SetTrigger("Attack");
 
+            // Saldırı sesi.
             playerAudio.PlayAttack();
 
             // Saldırının vuruş anına kadar bekle.
             yield return new WaitForSeconds(0.2f);
+
+            // -----------------------------------------
+            // HITBOX
+            // -----------------------------------------
 
             // Hasar alanını aç.
             attackHitbox.EnableHitbox();
@@ -125,6 +140,20 @@ namespace SolarOdyssey.Player
             attackHitbox.DisableHitbox();
 
             isAttacking = false;
+
+            // -----------------------------------------
+            // SALDIRI COOLDOWN
+            // -----------------------------------------
+
+            // Bir sonraki saldırıdan önce
+            // 0.2 saniye bekle.
+            attackOnCooldown = true;
+
+            yield return new WaitForSeconds(
+                attackCooldown
+            );
+
+            attackOnCooldown = false;
         }
 
         private void ThrowKnife()

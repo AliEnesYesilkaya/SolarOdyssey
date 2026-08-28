@@ -1,4 +1,5 @@
 using SolarOdyssey.Combat;
+using SolarOdyssey.UI;
 using UnityEngine;
 
 namespace SolarOdyssey
@@ -12,11 +13,15 @@ namespace SolarOdyssey
 
         private void Awake()
         {
-            startPosition = transform.position;
-            startRotation = transform.rotation;
+            startPosition =
+                transform.position;
+
+            startRotation =
+                transform.rotation;
         }
 
-        private void OnTriggerEnter2D(Collider2D other)
+        private void OnTriggerEnter2D(
+            Collider2D other)
         {
             if (!other.CompareTag("Player"))
                 return;
@@ -30,9 +35,94 @@ namespace SolarOdyssey
             if (health.IsFullHealth())
                 return;
 
-            health.Heal(healAmount);
+            // --------------------------------------------
+            // HEART EFFECT BUL
+            // --------------------------------------------
 
-            // Kalp toplama sesi
+            HeartCollectEffect effect =
+                FindFirstObjectByType<HeartCollectEffect>(
+                    FindObjectsInactive.Include
+                );
+
+            // --------------------------------------------
+            // CANVAS BUL
+            // --------------------------------------------
+
+            Canvas canvas =
+                FindFirstObjectByType<Canvas>(
+                    FindObjectsInactive.Include
+                );
+
+            // --------------------------------------------
+            // HEALTH BAR BUL
+            // --------------------------------------------
+
+            PlayerHealthBar healthBar =
+                FindFirstObjectByType<PlayerHealthBar>(
+                    FindObjectsInactive.Include
+                );
+
+            RectTransform healthBarTarget = null;
+
+            if (healthBar != null)
+            {
+                healthBarTarget =
+                    healthBar.GetComponent<RectTransform>();
+            }
+
+            // --------------------------------------------
+            // KALP SPRITE'INI AL
+            // --------------------------------------------
+
+            SpriteRenderer spriteRenderer =
+                GetComponent<SpriteRenderer>();
+
+            Sprite heartSprite = null;
+
+            if (spriteRenderer != null)
+            {
+                heartSprite =
+                    spriteRenderer.sprite;
+            }
+
+            Debug.Log(
+                "Heart Effect kontrolü: " +
+                "Effect=" + (effect != null) +
+                " Canvas=" + (canvas != null) +
+                " HealthBar=" + (healthBarTarget != null) +
+                " Sprite=" + (heartSprite != null)
+            );
+
+            // --------------------------------------------
+            // EFEKTİ BAŞLAT
+            // --------------------------------------------
+
+            if (effect != null &&
+                canvas != null &&
+                healthBarTarget != null &&
+                heartSprite != null)
+            {
+                effect.Setup(
+                    canvas,
+                    healthBarTarget,
+                    heartSprite,
+                    transform.position,
+                    healAmount,
+                    health
+                );
+            }
+            else
+            {
+                // Bir şey eksikse oyuncunun canı yine dolsun.
+                health.Heal(healAmount);
+
+                Debug.LogWarning(
+                    "Heart Effect kurulamadı. " +
+                    "Can direkt verildi."
+                );
+            }
+
+            // Kalp sesi.
             if (Audio.EnvironmentAudio.Instance != null)
             {
                 Audio.EnvironmentAudio.Instance.PlayHeart();
@@ -43,15 +133,17 @@ namespace SolarOdyssey
                 healAmount
             );
 
-            // Destroy etmiyoruz.
-            // Respawn sırasında tekrar aktif olacak.
+            // Pickup'ı kapat.
             gameObject.SetActive(false);
         }
 
         public void Respawn()
         {
-            transform.position = startPosition;
-            transform.rotation = startRotation;
+            transform.position =
+                startPosition;
+
+            transform.rotation =
+                startRotation;
 
             gameObject.SetActive(true);
         }

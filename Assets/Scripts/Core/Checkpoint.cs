@@ -7,21 +7,34 @@ namespace SolarOdyssey.Core
         public static Vector3 RespawnPosition;
         public static bool HasCheckpoint;
 
-        private void OnTriggerEnter2D(Collider2D other)
+        private void OnTriggerEnter2D(
+            Collider2D other)
         {
-            if (other.CompareTag("Player"))
+            if (!other.CompareTag("Player"))
+                return;
+
+            RespawnPosition =
+                transform.position;
+
+            HasCheckpoint = true;
+
+            // Checkpoint bilgisini kalıcı olarak kaydet.
+            if (SaveSystem.Instance != null)
             {
-                RespawnPosition = transform.position;
-                HasCheckpoint = true;
-
-                // Checkpoint sesi
-                if (Audio.EnvironmentAudio.Instance != null)
-                {
-                    Audio.EnvironmentAudio.Instance.PlayCheckpoint();
-                }
-
-                Debug.Log("Checkpoint reached!");
+                SaveSystem.Instance.SaveCheckpoint(
+                    transform.position
+                );
             }
+
+            // Checkpoint sesi
+            if (Audio.EnvironmentAudio.Instance != null)
+            {
+                Audio.EnvironmentAudio.Instance.PlayCheckpoint();
+            }
+
+            Debug.Log(
+                "Checkpoint reached!"
+            );
         }
     }
 }

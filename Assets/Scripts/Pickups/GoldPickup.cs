@@ -24,11 +24,47 @@ namespace SolarOdyssey
             CoinUI coinUI =
                 FindFirstObjectByType<CoinUI>();
 
-            if (coinUI != null)
+            GoldCollectEffect goldEffect =
+                FindFirstObjectByType<GoldCollectEffect>();
+
+            SpriteRenderer spriteRenderer =
+                GetComponent<SpriteRenderer>();
+
+            Sprite goldSprite = null;
+
+            if (spriteRenderer != null)
             {
-                coinUI.AddGold(goldAmount);
+                goldSprite =
+                    spriteRenderer.sprite;
             }
 
+            // --------------------------------------------
+            // ALTIN TOPLAMA EFEKTİ
+            // --------------------------------------------
+
+            if (goldEffect != null &&
+                coinUI != null &&
+                coinUI.CoinIcon != null &&
+                goldSprite != null)
+            {
+                goldEffect.Setup(
+                    coinUI.CoinIcon,
+                    goldSprite,
+                    transform.position,
+                    goldAmount,
+                    coinUI
+                );
+            }
+            else
+            {
+                // Efekt kurulamazsa altın kaybolmasın.
+                if (coinUI != null)
+                {
+                    coinUI.AddGold(goldAmount);
+                }
+            }
+
+            // Altın toplama sesi.
             if (Audio.EnvironmentAudio.Instance != null)
             {
                 Audio.EnvironmentAudio.Instance.PlayGold();
@@ -44,8 +80,11 @@ namespace SolarOdyssey
 
         public void Respawn()
         {
-            transform.position = startPosition;
-            transform.rotation = startRotation;
+            transform.position =
+                startPosition;
+
+            transform.rotation =
+                startRotation;
 
             gameObject.SetActive(true);
         }
