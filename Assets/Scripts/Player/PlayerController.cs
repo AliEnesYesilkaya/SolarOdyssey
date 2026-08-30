@@ -1,6 +1,6 @@
 using System.Collections;
+using Assets.Scripts.Projectiles;
 using SolarOdyssey.Combat;
-using SolarOdyssey.Projectiles;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -22,11 +22,19 @@ namespace SolarOdyssey.Player
         [SerializeField] private GameObject knifePrefab;
         [SerializeField] private Transform knifePoint;
 
+        [Header("Knife Settings")]
+        [SerializeField] private float knifeScale = 2f;
+
         [Header("Attack Settings")]
         [SerializeField] private float attackCooldown = 0.2f;
 
         private bool isAttacking;
         private bool attackOnCooldown;
+
+        // Oyuncunun en son baktığı/hareket ettiği yön.
+        // 1 = sağ
+        // -1 = sol
+        private float facingDirection = 1f;
 
         private void Awake()
         {
@@ -36,21 +44,15 @@ namespace SolarOdyssey.Player
             PlayerMovement =
                 GetComponent<PlayerMovement>();
 
-            // Input System haritasından
-            // Move ve Jump aksiyonlarını yakala.
             moveAction =
                 playerInput.actions["Move"];
 
             jumpAction =
                 playerInput.actions["Jump"];
 
-            // Animator Player'ın altındaki
-            // Visual objesinde olduğu için
-            // child objeler içinde buluyoruz.
             animator =
                 GetComponentInChildren<Animator>();
 
-            // Player'ın altındaki AttackHitbox'ı bul.
             attackHitbox =
                 GetComponentInChildren<AttackHitbox>();
 
@@ -63,26 +65,38 @@ namespace SolarOdyssey.Player
 
         private void Update()
         {
-            // Move aksiyonundaki yön bilgisini oku.
             Vector2 moveInput =
                 moveAction.ReadValue<Vector2>();
 
-            // Hareket bilgisini PlayerMovement'a gönder.
             PlayerMovement.Move(moveInput);
 
-            // Animator'a yatay hareket bilgisini gönder.
             animator.SetFloat(
                 "Speed",
                 Mathf.Abs(moveInput.x)
             );
 
-            // Animator'a yerde olup olmadığımızı gönder.
             animator.SetBool(
                 "IsGrounded",
                 PlayerMovement.IsGrounded
             );
 
-            // Jump aksiyonu tetiklendiyse zıpla.
+            // =========================================
+            // OYUNCUNUN BAKTIĞI YÖNÜ KAYDET
+            // =========================================
+
+            if (moveInput.x > 0.01f)
+            {
+                facingDirection = 1f;
+            }
+            else if (moveInput.x < -0.01f)
+            {
+                facingDirection = -1f;
+            }
+
+            // =========================================
+            // JUMP
+            // =========================================
+
             if (jumpAction.triggered)
             {
                 PlayerMovement.Jump();
@@ -93,8 +107,10 @@ namespace SolarOdyssey.Player
                 }
             }
 
-            // F tuşuna basınca kılıçla saldır.
-            // Saldırı devam etmiyorsa ve cooldown bitmişse saldır.
+            // =========================================
+            // KILIÇ SALDIRISI
+            // =========================================
+
             if (Keyboard.current.fKey.wasPressedThisFrame &&
                 !isAttacking &&
                 !attackOnCooldown)
@@ -102,7 +118,10 @@ namespace SolarOdyssey.Player
                 StartCoroutine(Attack());
             }
 
-            // G tuşuna basınca bıçak fırlat.
+            // =========================================
+            // BIÇAK
+            // =========================================
+
             if (Keyboard.current.gKey.wasPressedThisFrame)
             {
                 ThrowKnife();
@@ -113,40 +132,20 @@ namespace SolarOdyssey.Player
         {
             isAttacking = true;
 
-            // -----------------------------------------
-            // SALDIRI BAŞLANGICI
-            // -----------------------------------------
-
-            // Attack animasyonunu başlat.
             animator.SetTrigger("Attack");
 
-            // Saldırı sesi.
             playerAudio.PlayAttack();
 
-            // Saldırının vuruş anına kadar bekle.
             yield return new WaitForSeconds(0.2f);
 
-            // -----------------------------------------
-            // HITBOX
-            // -----------------------------------------
-
-            // Hasar alanını aç.
             attackHitbox.EnableHitbox();
 
-            // Hitbox'ın aktif kalacağı süre.
             yield return new WaitForSeconds(0.2f);
 
-            // Hasar alanını kapat.
             attackHitbox.DisableHitbox();
 
             isAttacking = false;
 
-            // -----------------------------------------
-            // SALDIRI COOLDOWN
-            // -----------------------------------------
-
-            // Bir sonraki saldırıdan önce
-            // 0.2 saniye bekle.
             attackOnCooldown = true;
 
             yield return new WaitForSeconds(
@@ -158,27 +157,63 @@ namespace SolarOdyssey.Player
 
         private void ThrowKnife()
         {
-            if (upgradeSystem == null)
-                return;
+            Debug.Log("========== BIÇAK TEST ==========");
 
-            // Envanterde bıçak yoksa fırlatma.
-            if (!upgradeSystem.UseKnife())
+            if (upgradeSystem == null)
+            {
+                Debug.LogError(
+                    "Knife: UpgradeSystem NULL!"
+                );
+
                 return;
+            }
+
+            if (!upgradeSystem.UseKnife())
+            {
+                Debug.LogWarning(
+                    "Knife: Bıçak hakkı yok."
+                );
+
+                return;
+            }
 
             if (knifePrefab == null)
+            {
+                Debug.LogError(
+                    "Knife: Knife Prefab NULL!"
+                );
+
                 return;
+            }
 
             if (knifePoint == null)
+            {
+                Debug.LogError(
+                    "Knife: Knife Point NULL!"
+                );
+
                 return;
+            }
 
-            // Oyuncunun baktığı yöne göre
-            // bıçağın fırlatma yönünü belirle.
-            float direction =
-                transform.localScale.x > 0
-                    ? 1f
-                    : -1f;
+            // =========================================
+            // FIRLATMA YÖNÜ
+            // =========================================
 
-            // Bıçağı KnifePoint konumunda oluştur.
+            Vector2 throwDirection =
+                new Vector2(
+                    facingDirection,
+                    0f
+                );
+
+            Debug.Log(
+                "Knife: Oyuncunun son yönü = " +
+                facingDirection
+            );
+
+            // =========================================
+            // BIÇAĞI OLUŞTUR
+            // =========================================
+
             GameObject knife =
                 Instantiate(
                     knifePrefab,
@@ -186,26 +221,63 @@ namespace SolarOdyssey.Player
                     Quaternion.identity
                 );
 
-            Vector2 throwDirection =
-                new Vector2(
-                    direction,
-                    0f
+            // =========================================
+            // BIÇAK BOYUTU
+            // =========================================
+
+            knife.transform.localScale =
+                new Vector3(
+                    knifeScale,
+                    knifeScale,
+                    1f
                 );
+
+            Debug.Log(
+                "Knife: Oluşturuldu -> " +
+                knife.name +
+                " | Scale = " +
+                knife.transform.localScale
+            );
+
+            // =========================================
+            // PROJECTILE SCRIPT
+            // =========================================
 
             KnifeProjectile projectile =
-                knife.GetComponent<KnifeProjectile>();
-
-            if (projectile != null)
-            {
-                // Bıçağa yönü,
-                // upgrade sistemini
-                // ve sahibi olan Player'ı gönder.
-                projectile.Launch(
-                    throwDirection,
-                    upgradeSystem,
-                    gameObject
+                knife.GetComponentInChildren<KnifeProjectile>(
+                    true
                 );
+
+            if (projectile == null)
+            {
+                Debug.LogError(
+                    "Knife: KnifeProjectile bulunamadı!"
+                );
+
+                Destroy(knife);
+
+                return;
             }
+
+            // =========================================
+            // FIRLAT
+            // =========================================
+
+            projectile.Launch(
+                throwDirection,
+                upgradeSystem,
+                gameObject
+            );
+
+            Debug.Log(
+                "Knife: Launch tamamlandı! " +
+                "Yön = " +
+                throwDirection
+            );
+
+            Debug.Log(
+                "========== BIÇAK TEST BİTTİ =========="
+            );
         }
     }
 }

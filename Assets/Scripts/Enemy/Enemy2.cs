@@ -1,3 +1,4 @@
+using SolarOdyssey.Combat;
 using UnityEngine;
 
 namespace SolarOdyssey.Enemy
@@ -6,22 +7,17 @@ namespace SolarOdyssey.Enemy
     {
         [Header("Patrol Settings")]
 
-        // Enemy'nin başlangıç konumunun sağında ve solunda
-        // ne kadar devriye gezeceğini belirler.
         [SerializeField] private float patrolDistance = 3f;
 
-        // Enemy'nin oyun başladığındaki X konumu.
         private float patrolStartX;
 
         protected override void Awake()
         {
             base.Awake();
 
-            // Başlangıç X konumunu kaydet.
             patrolStartX =
                 transform.position.x;
 
-            // Enemy 2'nin kendi patrol sistemini başlat.
             stateMachine.Initialize(
                 new Enemy2PatrolState(
                     rb,
@@ -65,7 +61,6 @@ namespace SolarOdyssey.Enemy
                     );
                 }
 
-                // Attack sırasında oyuncuya bak.
                 FacePlayer();
 
                 if (animator != null)
@@ -75,6 +70,8 @@ namespace SolarOdyssey.Enemy
                         0f
                     );
                 }
+
+                return;
             }
 
             // =========================================
@@ -100,9 +97,21 @@ namespace SolarOdyssey.Enemy
                     stateMachine.CurrentState
                     as ChaseState;
 
+                // =====================================
+                // OYUNCU ÇOK YUKARIDA
+                // =====================================
+
                 if (chaseState != null &&
                     chaseState.PlayerTooHigh)
                 {
+                    // Enemy2 oyuncuya doğru yatay
+                    // hareket ETMESİN.
+                    rb.linearVelocity =
+                        new Vector2(
+                            0f,
+                            rb.linearVelocity.y
+                        );
+
                     if (animator != null)
                     {
                         animator.SetFloat(
@@ -110,19 +119,22 @@ namespace SolarOdyssey.Enemy
                             0f
                         );
                     }
-                }
-                else
-                {
-                    // Chase sırasında oyuncuya bak.
-                    FacePlayer();
 
-                    if (animator != null)
-                    {
-                        animator.SetFloat(
-                            "Speed",
-                            1f
-                        );
-                    }
+                    return;
+                }
+
+                // =====================================
+                // NORMAL CHASE
+                // =====================================
+
+                FacePlayer();
+
+                if (animator != null)
+                {
+                    animator.SetFloat(
+                        "Speed",
+                        1f
+                    );
                 }
             }
 
@@ -156,9 +168,10 @@ namespace SolarOdyssey.Enemy
             }
         }
 
-        // Enemy2PatrolState tarafından çağrılır.
-        // Patrol sırasında Enemy'nin hareket yönüne göre
-        // Visual'ı çevirir.
+        // =============================================
+        // PATROL YÖNÜ
+        // =============================================
+
         private void FaceDirection(float direction)
         {
             Transform visual =
@@ -180,6 +193,10 @@ namespace SolarOdyssey.Enemy
             visual.localScale =
                 scale;
         }
+
+        // =============================================
+        // RESET
+        // =============================================
 
         public override void ResetToStart()
         {

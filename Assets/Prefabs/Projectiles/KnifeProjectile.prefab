@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5666905448843775680}
   - component: {fileID: 6989984996633534472}
   - component: {fileID: 885036473804857788}
+  - component: {fileID: 9074072876033625625}
   m_Layer: 0
   m_Name: KnifeProjectile
   m_TagString: Untagged
@@ -156,3 +157,17 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 0.5
+--- !u!114 &9074072876033625625
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1830482158486622279}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c82e561dd582c464e876a1c42afe67ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Assets.Scripts.Projectiles.KnifeProjectile
+  speed: 12
+  lifeTime: 3
