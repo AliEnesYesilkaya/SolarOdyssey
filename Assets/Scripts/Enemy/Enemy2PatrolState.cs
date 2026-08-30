@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace SolarOdyssey.Enemy
@@ -5,63 +6,120 @@ namespace SolarOdyssey.Enemy
     public class Enemy2PatrolState : IState
     {
         private Rigidbody2D rb;
-        private Transform pointA;
-        private Transform pointB;
+
+        // Enemy'nin başlangıç X konumu.
+        private float startX;
+
+        // Başlangıç konumundan sağa/sola
+        // ne kadar gidebileceği.
+        private float patrolDistance;
+
         private float moveSpeed;
 
-        private Transform targetPoint;
+        // Devriyenin sınırları.
+        private float leftLimit;
+        private float rightLimit;
 
-        public Enemy2PatrolState (Rigidbody2D rb, Transform pointA, Transform pointB, float moveSpeed)     
+        // 1 = sağ
+        // -1 = sol
+        private int direction;
+
+        // Enemy2'nin Visual'ını hareket yönüne
+        // göre çevirmek için kullanılacak fonksiyon.
+        private Action<float> faceDirection;
+
+
+        public Enemy2PatrolState(
+            Rigidbody2D rb,
+            float startX,
+            float patrolDistance,
+            float moveSpeed,
+            Action<float> faceDirection)
         {
             this.rb = rb;
-            this.pointA = pointA;
-            this.pointB = pointB;
+            this.startX = startX;
+            this.patrolDistance = patrolDistance;
             this.moveSpeed = moveSpeed;
-            //ilk devriye atılacak hedef b noktası 
-            targetPoint = pointB;
+            this.faceDirection = faceDirection;
+
+            // Sol sınır.
+            leftLimit =
+                startX - patrolDistance;
+
+            // Sağ sınır.
+            rightLimit =
+                startX + patrolDistance;
+
+            // İlk olarak sağa git.
+            direction = 1;
         }
+
 
         public void Enter()
         {
-            Debug.Log("Enemy2 Patrol başladı");
+            Debug.Log(
+                "Enemy2 Patrol başladı"
+            );
+
+            // Başlangıç yönüne göre Visual'ı çevir.
+            faceDirection?.Invoke(direction);
         }
+
 
         public void Tick()
-        { //devriye noktaları null ise işlemi durdur 
-            if (pointA == null || pointB == null)
+        {
+            if (rb == null)
                 return;
-            //hedef nokta ve düşman konumları arası yön farkı 
-            float dirX = Mathf.Sign(
-                targetPoint.position.x - rb.position.x
-            );
 
-            // Sadece yatay hareket veriyoruz.
-            // Y hızını Rigidbody2D ve gravity kontrol ediyor.
-            rb.linearVelocity = new Vector2(
-                dirX * moveSpeed,
-                rb.linearVelocity.y
-            );
+            // =========================================
+            // SAĞ SINIRA ULAŞTI MI?
+            // =========================================
 
-            // Hedef noktaya ulaştıysa 
-            if (Mathf.Abs(
-                    rb.position.x - targetPoint.position.x
-                ) < 0.05f)
-            {//hedefi değiştir
-                targetPoint =
-                    targetPoint == pointA
-                    ? pointB
-                    : pointA;
+            if (direction > 0 &&
+                rb.position.x >= rightLimit)
+            {
+                direction = -1;
+
+                // Yön değişti → Visual'ı sola çevir.
+                faceDirection?.Invoke(direction);
             }
+
+            // =========================================
+            // SOL SINIRA ULAŞTI MI?
+            // =========================================
+
+            else if (direction < 0 &&
+                     rb.position.x <= leftLimit)
+            {
+                direction = 1;
+
+                // Yön değişti → Visual'ı sağa çevir.
+                faceDirection?.Invoke(direction);
+            }
+
+            // =========================================
+            // HAREKET
+            // =========================================
+
+            rb.linearVelocity =
+                new Vector2(
+                    direction * moveSpeed,
+                    rb.linearVelocity.y
+                );
         }
-        //devriyeden çıkarken hızı sıfırla
+
+
         public void Exit()
         {
-            rb.linearVelocity = new Vector2(
-                0f,
-                rb.linearVelocity.y
-            );
+            rb.linearVelocity =
+                new Vector2(
+                    0f,
+                    rb.linearVelocity.y
+                );
 
-            Debug.Log("Enemy2 Patrol bitti");
+            Debug.Log(
+                "Enemy2 Patrol bitti"
+            );
         }
     }
 }

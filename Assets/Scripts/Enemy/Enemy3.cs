@@ -20,6 +20,36 @@ namespace SolarOdyssey.Enemy
             base.Awake();
 
             attackTimer = 0f;
+
+            Debug.Log(
+                "Enemy3 Awake çalıştı."
+            );
+
+            if (arrowPrefab == null)
+            {
+                Debug.LogError(
+                    "Enemy3: Arrow Prefab atanmadı!"
+                );
+            }
+            else
+            {
+                Debug.Log(
+                    "Enemy3: Arrow Prefab hazır."
+                );
+            }
+
+            if (arrowPoint == null)
+            {
+                Debug.LogError(
+                    "Enemy3: Arrow Point atanmadı!"
+                );
+            }
+            else
+            {
+                Debug.Log(
+                    "Enemy3: Arrow Point hazır."
+                );
+            }
         }
 
         protected override void Update()
@@ -27,7 +57,13 @@ namespace SolarOdyssey.Enemy
             base.Update();
 
             if (player == null)
+            {
+                Debug.LogWarning(
+                    "Enemy3: Player bulunamadı!"
+                );
+
                 return;
+            }
 
             float horizontalDistance =
                 Mathf.Abs(
@@ -41,29 +77,39 @@ namespace SolarOdyssey.Enemy
                     transform.position.y
                 );
 
+            // Oyuncu algılama alanı dışında.
             if (horizontalDistance > detectionRange)
             {
-                animator.SetFloat(
-                    "Speed",
-                    0f
-                );
+                if (animator != null)
+                {
+                    animator.SetFloat(
+                        "Speed",
+                        0f
+                    );
+                }
 
                 return;
             }
 
             FacePlayer();
 
+            // Enemy3 yerinde durur.
             rb.linearVelocity =
                 new Vector2(
                     0f,
                     rb.linearVelocity.y
                 );
 
-            animator.SetFloat(
-                "Speed",
-                0f
-            );
+            if (animator != null)
+            {
+                animator.SetFloat(
+                    "Speed",
+                    0f
+                );
+            }
 
+            // Oyuncu düşmanın çok üstünde veya
+            // altında ise saldırma.
             if (verticalDistance > verticalTolerance)
                 return;
 
@@ -80,24 +126,47 @@ namespace SolarOdyssey.Enemy
 
         private void Attack()
         {
+            Debug.Log(
+                "Enemy3 ATTACK başladı!"
+            );
+
             if (animator != null)
             {
                 animator.SetTrigger(
                     "Attack"
                 );
+
+                Debug.Log(
+                    "Enemy3 Attack Trigger gönderildi."
+                );
+            }
+            else
+            {
+                Debug.LogError(
+                    "Enemy3 Animator bulunamadı!"
+                );
             }
 
-            Debug.Log(
-                "Enemy3 OK ATIYOR!"
-            );
+            // OK BURADA OLUŞTURULMUYOR.
+            //
+            // Animation Event saldırı animasyonundaki
+            // doğru karede FireArrow() metodunu çağıracak.
         }
+
+        // =================================================
+        // ANIMATION EVENT
+        // =================================================
 
         public void FireArrow()
         {
+            Debug.Log(
+                "Enemy3 FireArrow() ÇALIŞTI!"
+            );
+
             if (arrowPrefab == null)
             {
-                Debug.LogWarning(
-                    "Enemy3: Arrow Prefab atanmadı!"
+                Debug.LogError(
+                    "Enemy3: Arrow Prefab BOŞ!"
                 );
 
                 return;
@@ -105,16 +174,36 @@ namespace SolarOdyssey.Enemy
 
             if (arrowPoint == null)
             {
-                Debug.LogWarning(
-                    "Enemy3: Arrow Point atanmadı!"
+                Debug.LogError(
+                    "Enemy3: Arrow Point BOŞ!"
                 );
 
                 return;
             }
 
             if (player == null)
-                return;
+            {
+                Debug.LogError(
+                    "Enemy3: Player bulunamadı!"
+                );
 
+                return;
+            }
+
+            // Okun oyuncuya doğru gideceği yön.
+            Vector2 direction =
+                (
+                    player.position -
+                    arrowPoint.position
+                ).normalized;
+
+            Debug.Log(
+                "Enemy3 ok oluşturuyor. " +
+                "Yön = " +
+                direction
+            );
+
+            // Ok prefabından yeni bir ok oluştur.
             GameObject arrow =
                 Instantiate(
                     arrowPrefab,
@@ -122,21 +211,36 @@ namespace SolarOdyssey.Enemy
                     Quaternion.identity
                 );
 
-            Vector2 direction =
-                (
-                    player.position -
-                    arrowPoint.position
-                ).normalized;
+            Debug.Log(
+                "Arrow oluşturuldu: " +
+                arrow.name
+            );
 
+            // Oluşturulan objenin ArrowProjectile
+            // componentini bul.
             ArrowProjectile projectile =
                 arrow.GetComponent<ArrowProjectile>();
 
-            if (projectile != null)
+            if (projectile == null)
             {
-                projectile.Launch(
-                    direction
+                Debug.LogError(
+                    "Oluşturulan Arrow üzerinde " +
+                    "ArrowProjectile YOK!"
                 );
+
+                Destroy(arrow);
+
+                return;
             }
+
+            // Oku oyuncuya doğru fırlat.
+            projectile.Launch(
+                direction
+            );
+
+            Debug.Log(
+                "ArrowProjectile.Launch() çağrıldı!"
+            );
         }
 
         public override void ResetToStart()
@@ -152,6 +256,10 @@ namespace SolarOdyssey.Enemy
                     0f
                 );
             }
+
+            Debug.Log(
+                "Enemy3 ResetToStart çalıştı."
+            );
         }
     }
 }
