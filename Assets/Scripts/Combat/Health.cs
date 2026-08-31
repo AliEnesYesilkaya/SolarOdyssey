@@ -61,7 +61,7 @@ namespace SolarOdyssey.Combat
             // BOSS
             if (earthBoss != null)
             {
-                maxHealth = 200;
+                maxHealth = 150;
             }
 
             currentHealth = maxHealth;

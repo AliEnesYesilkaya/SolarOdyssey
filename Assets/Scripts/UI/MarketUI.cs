@@ -3,6 +3,7 @@ using SolarOdyssey.Player;
 using SolarOdyssey.UI;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 namespace SolarOdyssey.Core
 {
@@ -14,6 +15,20 @@ namespace SolarOdyssey.Core
         [Header("Market Panel")]
         [SerializeField] private GameObject marketPanel;
 
+        [Header("Market Sections")]
+        [SerializeField] private GameObject swordSection;
+        [SerializeField] private GameObject knifeSection;
+        [SerializeField] private GameObject potionSection;
+
+        [Header("Market Buttons")]
+        [SerializeField] private GameObject swordButton;
+        [SerializeField] private GameObject knifeButton;
+        [SerializeField] private GameObject potionButton;
+
+        [Header("Selected Button Scale")]
+        [SerializeField] private float selectedButtonScale = 1.08f;
+        [SerializeField] private float normalButtonScale = 1f;
+
         [Header("Knife UI")]
         [SerializeField] private TMP_Text knifeLevelText;
         [SerializeField] private TMP_Text knifeDamageText;
@@ -24,6 +39,33 @@ namespace SolarOdyssey.Core
         [SerializeField] private TMP_Text swordDamageText;
         [SerializeField] private TMP_Text swordUpgradeButtonText;
 
+        // ==================================================
+        // GELİŞTİRME BARLARI
+        // ==================================================
+
+        [Header("Knife Upgrade Bar")]
+        [SerializeField] private Image knifeUpgradeBar;
+
+        [Header("Sword Upgrade Bar")]
+        [SerializeField] private Image swordUpgradeBar;
+
+        [Header("Upgrade Bar Settings")]
+        [SerializeField] private Color filledColor = Color.green;
+
+        // Barın dış kenarından içeriye bırakılan boşluk.
+        [SerializeField] private float barHorizontalPadding = 8f;
+
+        // Kareler arasındaki duvarların kapladığı alan.
+        [SerializeField] private float barGap = 4f;
+
+        // Karelerin üst/alt kenarlarından içeriye bırakılan boşluk.
+        [SerializeField] private float barVerticalPadding = 4f;
+
+        private Image[] knifeFillSquares;
+        private Image[] swordFillSquares;
+
+        private Sprite generatedWhiteSprite;
+
         private void Awake()
         {
             upgradeSystem =
@@ -32,10 +74,20 @@ namespace SolarOdyssey.Core
             coinUI =
                 FindFirstObjectByType<CoinUI>();
 
+            // Yeşil dolum için kullanılacak basit sprite'ı kod oluşturuyor.
+            CreateWhiteSprite();
+
+            // 5 bölmeli barların yeşil alanlarını oluştur.
+            CreateUpgradeBar(knifeUpgradeBar, out knifeFillSquares);
+            CreateUpgradeBar(swordUpgradeBar, out swordFillSquares);
+
             UpdateMarketUI();
 
-            // MarketUI objesi aktif kalacak.
-            // Sadece görüntülenen panel kapalı olacak.
+            // Market ilk açıldığında bütün bölümler kapalı.
+            CloseAllSections();
+
+            ResetButtonScales();
+
             if (marketPanel != null)
             {
                 marketPanel.SetActive(false);
@@ -62,9 +114,16 @@ namespace SolarOdyssey.Core
             }
         }
 
+        // ==================================================
+        // MARKET AÇ / KAPAT
+        // ==================================================
+
         public void Show()
         {
             UpdateMarketUI();
+
+            CloseAllSections();
+            ResetButtonScales();
 
             if (marketPanel != null)
             {
@@ -84,9 +143,88 @@ namespace SolarOdyssey.Core
             Time.timeScale = 1f;
         }
 
-        // ------------------------------------------------
+        // ==================================================
+        // MARKET SEKME SİSTEMİ
+        // ==================================================
+
+        public void OpenSword()
+        {
+            CloseAllSections();
+
+            if (swordSection != null)
+                swordSection.SetActive(true);
+
+            ResetButtonScales();
+
+            if (swordButton != null)
+            {
+                swordButton.transform.localScale =
+                    Vector3.one * selectedButtonScale;
+            }
+        }
+
+        public void OpenKnife()
+        {
+            CloseAllSections();
+
+            if (knifeSection != null)
+                knifeSection.SetActive(true);
+
+            ResetButtonScales();
+
+            if (knifeButton != null)
+            {
+                knifeButton.transform.localScale =
+                    Vector3.one * selectedButtonScale;
+            }
+        }
+
+        public void OpenPotion()
+        {
+            CloseAllSections();
+
+            if (potionSection != null)
+                potionSection.SetActive(true);
+
+            ResetButtonScales();
+
+            if (potionButton != null)
+            {
+                potionButton.transform.localScale =
+                    Vector3.one * selectedButtonScale;
+            }
+        }
+
+        private void CloseAllSections()
+        {
+            if (swordSection != null)
+                swordSection.SetActive(false);
+
+            if (knifeSection != null)
+                knifeSection.SetActive(false);
+
+            if (potionSection != null)
+                potionSection.SetActive(false);
+        }
+
+        private void ResetButtonScales()
+        {
+            if (swordButton != null)
+                swordButton.transform.localScale =
+                    Vector3.one * normalButtonScale;
+
+            if (knifeButton != null)
+                knifeButton.transform.localScale =
+                    Vector3.one * normalButtonScale;
+
+            if (potionButton != null)
+                potionButton.transform.localScale =
+                    Vector3.one * normalButtonScale;
+        }
+
+        // ==================================================
         // MARKET UI GÜNCELLEME
-        // ------------------------------------------------
+        // ==================================================
 
         private void UpdateMarketUI()
         {
@@ -97,9 +235,9 @@ namespace SolarOdyssey.Core
             UpdateSwordUI();
         }
 
-        // ------------------------------------------------
+        // ==================================================
         // BIÇAK UI
-        // ------------------------------------------------
+        // ==================================================
 
         private void UpdateKnifeUI()
         {
@@ -112,16 +250,14 @@ namespace SolarOdyssey.Core
             if (knifeLevelText != null)
             {
                 knifeLevelText.text =
-                    "Bıçak level = " +
-                    level;
+                    "BICAK LEVEL = " + level;
             }
 
             if (level >= 5)
             {
                 if (knifeUpgradeButtonText != null)
                 {
-                    knifeUpgradeButtonText.text =
-                        "MAX ";
+                    knifeUpgradeButtonText.text = "MAX";
                 }
 
                 if (knifeDamageText != null)
@@ -130,6 +266,7 @@ namespace SolarOdyssey.Core
                         "MAX HASAR = 20";
                 }
 
+                UpdateKnifeUpgradeBar(level);
                 return;
             }
 
@@ -145,30 +282,29 @@ namespace SolarOdyssey.Core
             if (knifeUpgradeButtonText != null)
             {
                 knifeUpgradeButtonText.text =
-                    "Lvl." +
-                    nextLevel +
-                    " = " +
-                    price;
+                    price.ToString();
             }
 
             if (knifeDamageText != null)
             {
                 knifeDamageText.text =
-                    "Lvl." +
+                    "LVL." +
                     level +
                     " = " +
                     currentDamage +
-                    " hasar → Lvl." +
+                    " HASAR → LVL." +
                     nextLevel +
                     " = " +
                     nextDamage +
-                    " hasar";
+                    " HASAR";
             }
+
+            UpdateKnifeUpgradeBar(level);
         }
 
-        // ------------------------------------------------
+        // ==================================================
         // KILIÇ UI
-        // ------------------------------------------------
+        // ==================================================
 
         private void UpdateSwordUI()
         {
@@ -181,16 +317,14 @@ namespace SolarOdyssey.Core
             if (swordLevelText != null)
             {
                 swordLevelText.text =
-                    "Kılıç level = " +
-                    level;
+                    "KILIC LEVEL = " + level;
             }
 
             if (level >= 5)
             {
                 if (swordUpgradeButtonText != null)
                 {
-                    swordUpgradeButtonText.text =
-                        "MAX ";
+                    swordUpgradeButtonText.text = "MAX";
                 }
 
                 if (swordDamageText != null)
@@ -199,6 +333,7 @@ namespace SolarOdyssey.Core
                         "MAX HASAR = 30";
                 }
 
+                UpdateSwordUpgradeBar(level);
                 return;
             }
 
@@ -214,30 +349,178 @@ namespace SolarOdyssey.Core
             if (swordUpgradeButtonText != null)
             {
                 swordUpgradeButtonText.text =
-                    "Lvl." +
-                    nextLevel +
-                    " = " +
-                    price;
+                    price.ToString();
             }
 
             if (swordDamageText != null)
             {
                 swordDamageText.text =
-                    "Lvl." +
+                    "LVL." +
                     level +
                     " = " +
                     currentDamage +
-                    " hasar → Lvl." +
+                    " HASAR → LVL." +
                     nextLevel +
                     " = " +
                     nextDamage +
-                    " hasar";
+                    " HASAR";
+            }
+
+            UpdateSwordUpgradeBar(level);
+        }
+
+        // ==================================================
+        // 5 BÖLMELİ GELİŞTİRME BARINI OLUŞTUR
+        // ==================================================
+
+        private void CreateUpgradeBar(
+            Image bar,
+            out Image[] fillSquares)
+        {
+            fillSquares = new Image[5];
+
+            if (bar == null)
+                return;
+
+            RectTransform barRect =
+                bar.GetComponent<RectTransform>();
+
+            float totalWidth =
+                barRect.rect.width;
+
+            float totalHeight =
+                barRect.rect.height;
+
+            float usableWidth =
+                totalWidth -
+                (barHorizontalPadding * 2);
+
+            float slotWidth =
+                (usableWidth -
+                 (barGap * 4)) / 5f;
+
+            for (int i = 0; i < 5; i++)
+            {
+                GameObject fillObject =
+                    new GameObject(
+                        "GreenFill_" + (i + 1),
+                        typeof(RectTransform),
+                        typeof(Image));
+
+                fillObject.transform.SetParent(
+                    bar.transform,
+                    false);
+
+                Image fillImage =
+                    fillObject.GetComponent<Image>();
+
+                fillImage.sprite =
+                    generatedWhiteSprite;
+
+                fillImage.color =
+                    filledColor;
+
+                RectTransform fillRect =
+                    fillObject.GetComponent<RectTransform>();
+
+                float x =
+                    barHorizontalPadding +
+                    (slotWidth + barGap) * i;
+
+                fillRect.anchorMin =
+                    new Vector2(0f, 0.5f);
+
+                fillRect.anchorMax =
+                    new Vector2(0f, 0.5f);
+
+                fillRect.pivot =
+                    new Vector2(0f, 0.5f);
+
+                fillRect.sizeDelta =
+                    new Vector2(
+                        slotWidth,
+                        totalHeight -
+                        (barVerticalPadding * 2));
+
+                fillRect.anchoredPosition =
+                    new Vector2(
+                        x,
+                        0f);
+
+                fillImage.enabled = false;
+
+                fillSquares[i] =
+                    fillImage;
             }
         }
 
-        // ------------------------------------------------
+        // ==================================================
+        // YEŞİL BAR GÜNCELLEME
+        // ==================================================
+
+        private void UpdateKnifeUpgradeBar(int level)
+        {
+            UpdateUpgradeBar(
+                knifeFillSquares,
+                level);
+        }
+
+        private void UpdateSwordUpgradeBar(int level)
+        {
+            UpdateUpgradeBar(
+                swordFillSquares,
+                level);
+        }
+
+        private void UpdateUpgradeBar(
+            Image[] squares,
+            int level)
+        {
+            if (squares == null)
+                return;
+
+            for (int i = 0; i < squares.Length; i++)
+            {
+                if (squares[i] == null)
+                    continue;
+
+                squares[i].enabled =
+                    i < level;
+            }
+        }
+
+        // ==================================================
+        // KOD İÇİNDE BASİT BEYAZ SPRITE OLUŞTUR
+        // ==================================================
+
+        private void CreateWhiteSprite()
+        {
+            Texture2D texture =
+                new Texture2D(1, 1);
+
+            texture.SetPixel(
+                0,
+                0,
+                Color.white);
+
+            texture.Apply();
+
+            generatedWhiteSprite =
+                Sprite.Create(
+                    texture,
+                    new Rect(
+                        0,
+                        0,
+                        1,
+                        1),
+                    new Vector2(
+                        0.5f,
+                        0.5f));
+        }
+
+        // ==================================================
         // BIÇAK SATIN ALMA
-        // ------------------------------------------------
+        // ==================================================
 
         public void BuyFiveKnives()
         {
@@ -263,9 +546,9 @@ namespace SolarOdyssey.Core
             upgradeSystem.AddKnives(10);
         }
 
-        // ------------------------------------------------
+        // ==================================================
         // BIÇAK GELİŞTİRME
-        // ------------------------------------------------
+        // ==================================================
 
         public void UpgradeKnife()
         {
@@ -291,9 +574,9 @@ namespace SolarOdyssey.Core
             }
         }
 
-        // ------------------------------------------------
+        // ==================================================
         // KILIÇ GELİŞTİRME
-        // ------------------------------------------------
+        // ==================================================
 
         public void UpgradeSword()
         {
@@ -319,9 +602,9 @@ namespace SolarOdyssey.Core
             }
         }
 
-        // ------------------------------------------------
+        // ==================================================
         // İKSİR
-        // ------------------------------------------------
+        // ==================================================
 
         public void BuyOneMinutePotion()
         {

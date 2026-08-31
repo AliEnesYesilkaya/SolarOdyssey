@@ -179,4 +179,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49f37dc8ff2b98444bba80469b944d24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SolarOdyssey.GoldPickup
-  goldAmount: 5
+  goldAmount: 75
