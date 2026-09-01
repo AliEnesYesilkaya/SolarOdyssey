@@ -1,22 +1,10 @@
 fileFormatVersion: 2
-guid: 0b3adb4d351c853469b7989b77a03034
+guid: 3f88370e8866bbe40b258026eed85fb4
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3465488435725591619
-    second: FullSpriteSheet_0
-  - first:
-      213: -4774308597150799306
-    second: FullSpriteSheet_1
-  - first:
-      213: 2610823063370250894
-    second: FullSpriteSheet_2
-  - first:
-      213: 2746082762418773511
-    second: FullSpriteSheet_3
-  - first:
-      213: 3852824680099810936
-    second: FullSpriteSheet_4
+      213: -1604103094234885404
+    second: Fire_5_16x16_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -63,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 32
+  spritePixelsToUnits: 8
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -112,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: FullSpriteSheet_0
+      name: Fire_5_16x16_0
       rect:
         serializedVersion: 2
-        x: 15
-        y: 16
-        width: 98
-        height: 98
+        x: 0
+        y: 0
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -127,96 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: dbb1a5fe0ac18efc0800000000000000
-      internalID: -3465488435725591619
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: FullSpriteSheet_1
-      rect:
-        serializedVersion: 2
-        x: 143
-        y: 15
-        width: 98
-        height: 98
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 63aabb250af3ebdb0800000000000000
-      internalID: -4774308597150799306
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: FullSpriteSheet_2
-      rect:
-        serializedVersion: 2
-        x: 271
-        y: 15
-        width: 98
-        height: 98
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e8ab49f4eb18b3420800000000000000
-      internalID: 2610823063370250894
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: FullSpriteSheet_3
-      rect:
-        serializedVersion: 2
-        x: 431
-        y: 16
-        width: 34
-        height: 98
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 70e5bc919bb0c1620800000000000000
-      internalID: 2746082762418773511
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: FullSpriteSheet_4
-      rect:
-        serializedVersion: 2
-        x: 527
-        y: 47
-        width: 98
-        height: 34
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 87e053722abf77530800000000000000
-      internalID: 3852824680099810936
+      spriteID: 4e256051cb41db9e0800000000000000
+      internalID: -1604103094234885404
       vertices: []
       indices: 
       edges: []
@@ -235,11 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      FullSpriteSheet_0: -3465488435725591619
-      FullSpriteSheet_1: -4774308597150799306
-      FullSpriteSheet_2: 2610823063370250894
-      FullSpriteSheet_3: 2746082762418773511
-      FullSpriteSheet_4: 3852824680099810936
+      Fire_5_16x16_0: -1604103094234885404
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
