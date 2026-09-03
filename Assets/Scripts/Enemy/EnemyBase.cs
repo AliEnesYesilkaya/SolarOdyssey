@@ -89,7 +89,14 @@ namespace SolarOdyssey.Enemy
 
         protected virtual void Update()
         {
-            FacePlayer();
+            // Enemy2 patrol halindeyken yön kontrolü tamamen
+            // Enemy2PatrolState tarafından yapılıyor; FacePlayer()
+            // bunu ezmesin diye bu durumda çağrılmıyor.
+            if (stateMachine?.CurrentState is not Enemy2PatrolState)
+            {
+                FacePlayer();
+            }
+
             HandleFootsteps();
         }
 

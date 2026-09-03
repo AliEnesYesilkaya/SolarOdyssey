@@ -1,0 +1,611 @@
+fileFormatVersion: 2
+guid: 4ab91087dea43834caa8cf6239ffd926
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -13080840364854667
+    second: fire ball orb death fx 3_0
+  - first:
+      213: -6522513616382097862
+    second: fire ball orb death fx 3_1
+  - first:
+      213: -5497576705153299449
+    second: fire ball orb death fx 3_2
+  - first:
+      213: -4222674989060638302
+    second: fire ball orb death fx 3_3
+  - first:
+      213: -8038794209702123236
+    second: fire ball orb death fx 3_4
+  - first:
+      213: -2580362190176817459
+    second: fire ball orb death fx 3_5
+  - first:
+      213: -6316144991134024091
+    second: fire ball orb death fx 3_6
+  - first:
+      213: -6715354003111924248
+    second: fire ball orb death fx 3_7
+  - first:
+      213: -7821483149059915248
+    second: fire ball orb death fx 3_8
+  - first:
+      213: 420295115767621485
+    second: fire ball orb death fx 3_9
+  - first:
+      213: 1048199289771083908
+    second: fire ball orb death fx 3_10
+  - first:
+      213: 1601409878066680852
+    second: fire ball orb death fx 3_11
+  - first:
+      213: 6765144218277641848
+    second: fire ball orb death fx 3_12
+  - first:
+      213: 2924812195407994379
+    second: fire ball orb death fx 3_13
+  - first:
+      213: -6869548137707287596
+    second: fire ball orb death fx 3_14
+  - first:
+      213: -8852624855607030601
+    second: fire ball orb death fx 3_15
+  - first:
+      213: -9053849319211830411
+    second: fire ball orb death fx 3_16
+  - first:
+      213: 6074748851363887283
+    second: fire ball orb death fx 3_17
+  - first:
+      213: 5734848756453030097
+    second: fire ball orb death fx 3_18
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: fire ball orb death fx 3_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 43
+        width: 30
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 57270b48b0781dff0800000000000000
+      internalID: -13080840364854667
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fire ball orb death fx 3_1
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 62
+        width: 8
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a3685e47c606b75a0800000000000000
+      internalID: -6522513616382097862
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fire ball orb death fx 3_2
+      rect:
+        serializedVersion: 2
+        x: 37
+        y: 57
+        width: 13
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 70c00e33d1fa4b3b0800000000000000
+      internalID: -5497576705153299449
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fire ball orb death fx 3_3
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 63
+        width: 14
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2a93d1b587b0665c0800000000000000
+      internalID: -4222674989060638302
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fire ball orb death fx 3_4
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 52
+        width: 25
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c19ec34f147707090800000000000000
+      internalID: -8038794209702123236
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fire ball orb death fx 3_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 32
+        width: 15
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dce69a66246b03cd0800000000000000
+      internalID: -2580362190176817459
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fire ball orb death fx 3_6
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 43
+        width: 11
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 56ef79d489b8858a0800000000000000
+      internalID: -6316144991134024091
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fire ball orb death fx 3_7
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 33
+        width: 21
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8ed24871d154ec2a0800000000000000
+      internalID: -6715354003111924248
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fire ball orb death fx 3_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 9
+        width: 36
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 01284931482847390800000000000000
+      internalID: -7821483149059915248
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fire ball orb death fx 3_9
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 19
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d6729245e2035d500800000000000000
+      internalID: 420295115767621485
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fire ball orb death fx 3_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4884f9053b3fb8e00800000000000000
+      internalID: 1048199289771083908
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fire ball orb death fx 3_11
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 8
+        width: 15
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 41457f9acc9593610800000000000000
+      internalID: 1601409878066680852
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fire ball orb death fx 3_12
+      rect:
+        serializedVersion: 2
+        x: 13
+        y: 0
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 87ef9b0c2de92ed50800000000000000
+      internalID: 6765144218277641848
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fire ball orb death fx 3_13
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 0
+        width: 6
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b0e16060235079820800000000000000
+      internalID: 2924812195407994379
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fire ball orb death fx 3_14
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 24
+        width: 36
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4dbc28c7d567aa0a0800000000000000
+      internalID: -6869548137707287596
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fire ball orb death fx 3_15
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 0
+        width: 31
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7bccfb7d898252580800000000000000
+      internalID: -8852624855607030601
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fire ball orb death fx 3_16
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 19
+        width: 12
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 573777673044a5280800000000000000
+      internalID: -9053849319211830411
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fire ball orb death fx 3_17
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 16
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3b8b14915e7dd4450800000000000000
+      internalID: 6074748851363887283
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fire ball orb death fx 3_18
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 0
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1d839f83f86469f40800000000000000
+      internalID: 5734848756453030097
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      fire ball orb death fx 3_0: -13080840364854667
+      fire ball orb death fx 3_1: -6522513616382097862
+      fire ball orb death fx 3_10: 1048199289771083908
+      fire ball orb death fx 3_11: 1601409878066680852
+      fire ball orb death fx 3_12: 6765144218277641848
+      fire ball orb death fx 3_13: 2924812195407994379
+      fire ball orb death fx 3_14: -6869548137707287596
+      fire ball orb death fx 3_15: -8852624855607030601
+      fire ball orb death fx 3_16: -9053849319211830411
+      fire ball orb death fx 3_17: 6074748851363887283
+      fire ball orb death fx 3_18: 5734848756453030097
+      fire ball orb death fx 3_2: -5497576705153299449
+      fire ball orb death fx 3_3: -4222674989060638302
+      fire ball orb death fx 3_4: -8038794209702123236
+      fire ball orb death fx 3_5: -2580362190176817459
+      fire ball orb death fx 3_6: -6316144991134024091
+      fire ball orb death fx 3_7: -6715354003111924248
+      fire ball orb death fx 3_8: -7821483149059915248
+      fire ball orb death fx 3_9: 420295115767621485
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -106,6 +106,9 @@ namespace SolarOdyssey.Enemy
                     direction * moveSpeed,
                     rb.linearVelocity.y
                 );
+
+            // Hareket edilen yöne göre Visual'ı sürekli düzelt.
+            faceDirection?.Invoke(direction);
         }
 
 

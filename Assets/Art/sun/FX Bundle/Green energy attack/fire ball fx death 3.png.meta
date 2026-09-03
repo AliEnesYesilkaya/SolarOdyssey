@@ -1,0 +1,663 @@
+fileFormatVersion: 2
+guid: abebd61cd7deb8a4b9097efe99c57ba8
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 1046254005544613274
+    second: fire ball fx death 3_0
+  - first:
+      213: -2170082381498158745
+    second: fire ball fx death 3_1
+  - first:
+      213: -1783813037545345600
+    second: fire ball fx death 3_2
+  - first:
+      213: 2677156532299627273
+    second: fire ball fx death 3_3
+  - first:
+      213: -8440539509437702622
+    second: fire ball fx death 3_4
+  - first:
+      213: 751380314829209065
+    second: fire ball fx death 3_5
+  - first:
+      213: 5257131745885279470
+    second: fire ball fx death 3_6
+  - first:
+      213: -2178877046366380316
+    second: fire ball fx death 3_7
+  - first:
+      213: -4927214904515742958
+    second: fire ball fx death 3_8
+  - first:
+      213: -1129958617256116433
+    second: fire ball fx death 3_9
+  - first:
+      213: -8264030234079669599
+    second: fire ball fx death 3_10
+  - first:
+      213: 7763316686248742111
+    second: fire ball fx death 3_11
+  - first:
+      213: -8871359946229822899
+    second: fire ball fx death 3_12
+  - first:
+      213: 3384333483004840183
+    second: fire ball fx death 3_13
+  - first:
+      213: -7364761912920763372
+    second: fire ball fx death 3_14
+  - first:
+      213: 7562852506863239773
+    second: fire ball fx death 3_15
+  - first:
+      213: 6605968422573136276
+    second: fire ball fx death 3_16
+  - first:
+      213: -2409575377018017028
+    second: fire ball fx death 3_17
+  - first:
+      213: -4425755077979885045
+    second: fire ball fx death 3_18
+  - first:
+      213: 5242498738763547408
+    second: fire ball fx death 3_19
+  - first:
+      213: -8981246954887161853
+    second: fire ball fx death 3_20
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: fire ball fx death 3_0
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 83
+        width: 8
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a95f059897a058e00800000000000000
+      internalID: 1046254005544613274
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fire ball fx death 3_1
+      rect:
+        serializedVersion: 2
+        x: 39
+        y: 72
+        width: 9
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 761f775529152e1e0800000000000000
+      internalID: -2170082381498158745
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fire ball fx death 3_2
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 87
+        width: 9
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0cd266f4e7f9e37e0800000000000000
+      internalID: -1783813037545345600
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fire ball fx death 3_3
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 79
+        width: 6
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 90bf5d39eab272520800000000000000
+      internalID: 2677156532299627273
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fire ball fx death 3_4
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 83
+        width: 13
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 22ed05b390e2dda80800000000000000
+      internalID: -8440539509437702622
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fire ball fx death 3_5
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 83
+        width: 9
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9edbd945a607d6a00800000000000000
+      internalID: 751380314829209065
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fire ball fx death 3_6
+      rect:
+        serializedVersion: 2
+        x: 74
+        y: 88
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ee4dbea287515f840800000000000000
+      internalID: 5257131745885279470
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fire ball fx death 3_7
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 54
+        width: 33
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4ee541aded213c1e0800000000000000
+      internalID: -2178877046366380316
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fire ball fx death 3_8
+      rect:
+        serializedVersion: 2
+        x: 42
+        y: 61
+        width: 29
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 213345c56240f9bb0800000000000000
+      internalID: -4927214904515742958
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fire ball fx death 3_9
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 50
+        width: 34
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f2fbe87df949150f0800000000000000
+      internalID: -1129958617256116433
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fire ball fx death 3_10
+      rect:
+        serializedVersion: 2
+        x: 61
+        y: 60
+        width: 30
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1a2d79c6944405d80800000000000000
+      internalID: -8264030234079669599
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fire ball fx death 3_11
+      rect:
+        serializedVersion: 2
+        x: 84
+        y: 51
+        width: 27
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fdc08b2f467dcbb60800000000000000
+      internalID: 7763316686248742111
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fire ball fx death 3_12
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 14
+        width: 16
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d4ac752a12992e480800000000000000
+      internalID: -8871359946229822899
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fire ball fx death 3_13
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 30
+        width: 58
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7f8c6ff2f5197fe20800000000000000
+      internalID: 3384333483004840183
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fire ball fx death 3_14
+      rect:
+        serializedVersion: 2
+        x: 43
+        y: 32
+        width: 11
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 41418057f0c1bc990800000000000000
+      internalID: -7364761912920763372
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fire ball fx death 3_15
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 1
+        width: 28
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d5281480946a4f860800000000000000
+      internalID: 7562852506863239773
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fire ball fx death 3_16
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 33
+        width: 31
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4995be8c74d1dab50800000000000000
+      internalID: 6605968422573136276
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fire ball fx death 3_17
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 20
+        width: 24
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cfa205906f77f8ed0800000000000000
+      internalID: -2409575377018017028
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fire ball fx death 3_18
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 1
+        width: 14
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b02b02a843f8492c0800000000000000
+      internalID: -4425755077979885045
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fire ball fx death 3_19
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 13
+        width: 18
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0134f63b3d811c840800000000000000
+      internalID: 5242498738763547408
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fire ball fx death 3_20
+      rect:
+        serializedVersion: 2
+        x: 71
+        y: 4
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 30854edaa733c5380800000000000000
+      internalID: -8981246954887161853
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      fire ball fx death 3_0: 1046254005544613274
+      fire ball fx death 3_1: -2170082381498158745
+      fire ball fx death 3_10: -8264030234079669599
+      fire ball fx death 3_11: 7763316686248742111
+      fire ball fx death 3_12: -8871359946229822899
+      fire ball fx death 3_13: 3384333483004840183
+      fire ball fx death 3_14: -7364761912920763372
+      fire ball fx death 3_15: 7562852506863239773
+      fire ball fx death 3_16: 6605968422573136276
+      fire ball fx death 3_17: -2409575377018017028
+      fire ball fx death 3_18: -4425755077979885045
+      fire ball fx death 3_19: 5242498738763547408
+      fire ball fx death 3_2: -1783813037545345600
+      fire ball fx death 3_20: -8981246954887161853
+      fire ball fx death 3_3: 2677156532299627273
+      fire ball fx death 3_4: -8440539509437702622
+      fire ball fx death 3_5: 751380314829209065
+      fire ball fx death 3_6: 5257131745885279470
+      fire ball fx death 3_7: -2178877046366380316
+      fire ball fx death 3_8: -4927214904515742958
+      fire ball fx death 3_9: -1129958617256116433
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
