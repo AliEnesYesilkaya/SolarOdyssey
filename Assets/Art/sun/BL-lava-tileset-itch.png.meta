@@ -37,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -51,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -103,12 +103,12 @@ TextureImporter:
       name: BL-lava-tileset-itch_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 97
         y: 0
-        width: 168
-        height: 120
+        width: 23
+        height: 24
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -121,11 +121,143 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: BL-lava-tileset-itch_1
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 0
+        width: 23
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 63c82388de35b324e83ef6e4c2034469
+      internalID: 1297763145
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BL-lava-tileset-itch_2
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 47
+        width: 24
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1c95e1322b81b9a41867407562df8187
+      internalID: 1702716780
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BL-lava-tileset-itch_3
+      rect:
+        serializedVersion: 2
+        x: 119
+        y: 47
+        width: 26
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 016f3a88210d9cd48b854e97a2e1948b
+      internalID: 2011172816
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BL-lava-tileset-itch_4
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 1
+        width: 48
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3b375b1b3fadea949981453ca83f75a2
+      internalID: -1446783965
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BL-lava-tileset-itch_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 26
+        width: 25
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 97280b4711b1d16408a35daa763b8dd0
+      internalID: 1705966131
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BL-lava-tileset-itch_6
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 24
+        width: 22
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8de35295be8c5314f89c6a617cc3d02c
+      internalID: -1233953697
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: da870d509025d404b9e95d2d3bc2cbc8
     internalID: 0
     vertices: []
     indices: 
@@ -136,6 +268,12 @@ TextureImporter:
       entries: []
     nameFileIdTable:
       BL-lava-tileset-itch_0: 8191507075521383696
+      BL-lava-tileset-itch_1: 1297763145
+      BL-lava-tileset-itch_2: 1702716780
+      BL-lava-tileset-itch_3: 2011172816
+      BL-lava-tileset-itch_4: -1446783965
+      BL-lava-tileset-itch_5: 1705966131
+      BL-lava-tileset-itch_6: -1233953697
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

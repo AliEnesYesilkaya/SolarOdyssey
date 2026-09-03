@@ -822,6 +822,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SolarOdyssey.Core.Spike
   damage: 20
+  damageInterval: 1
+  enemyDamage: 1
+  enemyDamageInterval: 1
 --- !u!61 &624555878
 BoxCollider2D:
   m_ObjectHideFlags: 0
