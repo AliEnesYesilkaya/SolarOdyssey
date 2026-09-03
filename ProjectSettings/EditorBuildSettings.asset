@@ -14,6 +14,15 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/EarthLevel.unity
     guid: b2b514419f8b7614ab8cdabe634e1b0c
+  - enabled: 1
+    path: Assets/Scenes/LevelSelect.unity
+    guid: 6c82a222a4ca63b4183b521f45a70aac
+  - enabled: 1
+    path: Assets/Scenes/VenusLevel.unity
+    guid: 660ffb12909e6d04e8bbbd78373cec79
+  - enabled: 1
+    path: Assets/Scenes/SunLevel.unity
+    guid: a2d051b1b1d8a474d99734fbd3e35bf4
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0
